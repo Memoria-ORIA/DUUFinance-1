@@ -15,7 +15,7 @@ const Account = ({setmobMenu, setModal}) => {
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a href="/">Axen Coin</a>
+								<li><a href="/">GEN</a>
 								<ul className="dropdown">
 									<li>
 									<a href="/">Buy on bog swap</a>
@@ -33,7 +33,7 @@ const Account = ({setmobMenu, setModal}) => {
 								<div className="acc-detail-wrap">
 									<span>Your Balance</span>
 									<h1>$0</h1>
-									<span>0 AXEN COIN</span>
+									<span>0 GEN</span>
 								</div>
 								<div className="acc-detail-wrap">
 									<span>APY</span>
@@ -48,12 +48,12 @@ const Account = ({setmobMenu, setModal}) => {
 							</div>
 							<div className="account-matrix-wrap">
 								<div className="account-data">
-									<p>Current AXEN COIN Price</p>
+									<p>Current GEN Price</p>
 									<span className="color-white">$150.76</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount</p>
-									<span className="color-white">0 AXEN COIN</span>
+									<span className="color-white">0 GEN</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount USD</p>
