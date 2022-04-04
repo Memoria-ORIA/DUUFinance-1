@@ -34,7 +34,7 @@ const Calculator = ({setmobMenu, setModal}) => {
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a href="/">SAFUU</a>
+								<li><a href="/">AXEN COIN</a>
 								<ul className="dropdown">
 									<li>
 									<a href="/">Buy on bog swap</a>
@@ -53,7 +53,7 @@ const Calculator = ({setmobMenu, setModal}) => {
 							</div>
 							<div className="calc-price-container">
 								<div className="calc-price-wrap">
-									<h3 className="color-white">SAFUU Price</h3>
+									<h3 className="color-white">AXEN COIN Price</h3>
 									<h2>$0.195172</h2>
 								</div>
 								<div className="calc-price-wrap">
@@ -61,13 +61,13 @@ const Calculator = ({setmobMenu, setModal}) => {
 									<h2>383,025.8%</h2>
 								</div>
 								<div className="calc-price-wrap mob-mt">
-									<h3 className="color-white">Your SAFUU Balance</h3>
-									<h2>0 SAFUU</h2>
+									<h3 className="color-white">Your AXEN COIN Balance</h3>
+									<h2>0 AXEN COIN</h2>
 								</div>
 							</div>
 							<div className="calc-grid-container">
 								<div className="field-wrap">
-									<span>SAFUU Amount</span>
+									<span>AXEN COIN Amount</span>
 									<div className="field">
 										<input type="text" name="" id="" value={0} />
 										<span>Max</span>
@@ -81,14 +81,14 @@ const Calculator = ({setmobMenu, setModal}) => {
 									</div>
 								</div>
 								<div className="field-wrap">
-									<span>SAFUU price at purchase ($)</span>
+									<span>AXEN COIN price at purchase ($)</span>
 									<div className="field">
 										<input type="text" name="" id="" value={150.06} placeholder="Amount" />
 										<span>Current</span>
 									</div>
 								</div>
 								<div className="field-wrap">
-									<span>Future SAFUU market price ($)</span>
+									<span>Future AXEN COIN market price ($)</span>
 									<div className="field">
 										<input type="text" name="" id="" value={150.06} placeholder="Amount" />
 										<span>Current</span>
@@ -106,8 +106,8 @@ const Calculator = ({setmobMenu, setModal}) => {
 									<span>$0</span>
 								</div>
 								<div className="data">
-									<p>SAFUU rewards estimation</p>
-									<span>0 SAFUU</span>
+									<p>AXEN COIN rewards estimation</p>
+									<span>0 AXEN COIN</span>
 								</div>
 								<div className="data">
 									<p>Potential return</p>

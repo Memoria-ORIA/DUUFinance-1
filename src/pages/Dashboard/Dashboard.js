@@ -16,7 +16,7 @@ const Dashboard = ({setmobMenu, setModal}) => {
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a href="/">SAFUU</a>
+								<li><a href="/">AXEN COIN</a>
 								<ul className="dropdown">
 									<li>
 									<a href="/">Buy on bog swap</a>
@@ -31,7 +31,7 @@ const Dashboard = ({setmobMenu, setModal}) => {
 						<div className="dashboard-data-container">
 							<div className="dashboard-data-wrap">
 								<div className="heading-wrap">
-									<span>SAFUU Price</span>
+									<span>AXEN COIN Price</span>
 									<h5>$151.73</h5>
 								</div>
 								<div className="heading-wrap">
@@ -42,7 +42,7 @@ const Dashboard = ({setmobMenu, setModal}) => {
 									<span>Circulating Supply</span>
 									<h5>542,881.91</h5>
 								</div>
-							
+
 							<div className="heading-wrap">
 								<span>Backed Liquidity</span>
 								<h5>100%</h5>
@@ -60,7 +60,7 @@ const Dashboard = ({setmobMenu, setModal}) => {
 						<div className="dashboard-grid-container">
 							<div className="grid-data-wrap dashboard-grid-gap">
 								<div className="grid-data-heading">
-									<span>SAFUU Price</span>
+									<span>AXEN COIN Price</span>
 									<h1>$151.84</h1>
 								</div>
 							</div>
@@ -78,7 +78,7 @@ const Dashboard = ({setmobMenu, setModal}) => {
 							</div>
 							<div className="grid-data-wrap">
 								<div className="grid-data-heading">
-									<span>SAFUU Insurance Fund Value</span>
+									<span>AXEN COIN Insurance Fund Value</span>
 									<h1>$2,030,858</h1>
 								</div>
 							</div>
@@ -86,15 +86,15 @@ const Dashboard = ({setmobMenu, setModal}) => {
 						<div className="dashboard-firepit-container">
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>
-								<h1>97,195.42 SAFUU</h1>
+								<h1>97,195.42 AXEN COIN</h1>
 							</div>
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>
-								<h1>97,195.42 SAFUU</h1>
+								<h1>97,195.42 AXEN COIN</h1>
 							</div>
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>
-								<h1>97,195.42 SAFUU</h1>
+								<h1>97,195.42 AXEN COIN</h1>
 							</div>
 						</div>
 					</div>
