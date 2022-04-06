@@ -11,6 +11,7 @@ import genTokenAbi from './abis/GEN.json';
 import erc20Abi from './abis/ERC20.json';
 import { ethers } from 'ethers';
 import axios from 'axios'
+import Loading from './components/Loading';
 // const Web3 = require('web3');
 
 
@@ -31,14 +32,18 @@ function App() {
     setmobMenu(!mobMenu)
   }
 
+  const [init, setInit] = useState(false);
   const [tokenPrice, setTokenPrice] = useState(0);
   const [totalSupply, setTotalSupply] = useState(0);
-  const [circulatingSupply, setCirculatingSupply] = useState(0)
-  const [treasuryBalance,setTreasuryBalance]= useState(0)
-  const [GIFBalance,setGIFBalance]= useState(0)
-  const [firePitBalance,setFirePitBalance]= useState(0)
-  const [poolBalance,setPoolBalance]= useState(0)
-  
+  const [circulatingSupply, setCirculatingSupply] = useState(0);
+  const [treasuryBalance, setTreasuryBalance] = useState(0);
+  const [GIFBalance, setGIFBalance] = useState(0);
+  const [firePitBalance, setFirePitBalance] = useState(0);
+  const [poolBalance, setPoolBalance] = useState(0);
+
+  const [interval, setIntervalSec] = useState(8 * 3600);
+  const [remainTime, setRemainTime] = useState(0);
+
 
   const [walletBalance, setWalletBalance] = useState(0);
   const [rebaseDuration, setRebaseDuration] = useState(1800);
@@ -63,20 +68,22 @@ function App() {
     // const contract = web3.eth.Contract((jsonInterface, address);
 
 
-}
+  }
 
   // event on initialize page.
   useEffect(() => {
-    const interval = setInterval(refreshPage, 3000);
-    InitPage();
-    return () => clearInterval(interval);
-  }, []);
+    // const interval = setInterval(refreshPage, 3000);
+    if (!init) {
+      refreshPage();
+    }
+    // return () => clearInterval(interval);
+  }, [init]);
 
-  async function InitPage() {
-    await refreshPage();
-    // await conntectWallet();
-    console.log("[GEN] Page Initialized");
-  }
+  // async function InitPage() {
+  //   await refreshPage();
+  //   // await conntectWallet();
+  //   console.log("[GEN] Page Initialized");
+  // }
 
   async function refreshPage() {
     try {
@@ -84,24 +91,31 @@ function App() {
       // const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
       // const contract = web3.eth.Contract(genTokenAbi, GEN_TOKEN_ADDRESS);
       // console.log("web3_contract:",contract)
-      const provider = new ethers.providers. JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545');
+      const provider = new ethers.providers.JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545');
       // const signer = await provider.getSigner();
       const genTokenContract = new ethers.Contract(GEN_TOKEN_ADDRESS, genTokenAbi, provider);
-      
 
-      
-      
+
+
+
       const tokenPrice = await getTokenPriceByPair(genTokenContract, provider);
-      
+
       const totalSupply = await genTokenContract.totalSupply();
       setTotalSupply(ethers.utils.formatUnits(totalSupply, 5))// * tokenPrice).toFixed(2));
-      
+
       const circulatingSupply = await genTokenContract.getCirculatingSupply()
       setCirculatingSupply(ethers.utils.formatUnits(circulatingSupply, 5))// * tokenPrice).toFixed(2));
-      
+
       const balances = await getBalancesInfo(genTokenContract)
-      
-      
+
+      const lRTime = await genTokenContract._lastRebasedTime();
+      const utcTimestamp = new Date().getTime();
+      const deltaTime = parseInt(utcTimestamp / 1000) - parseInt(lRTime);
+      const remainTime = interval - deltaTime % interval;
+      setRemainTime(remainTime);
+
+      console.log("remainTime:", remainTime);
+      setInit(true);
 
       // const balance = await getWalletInfo(provider, genTokenContract);
       // const rewards = CalculateRewardsCustom(REBASE_FREQ) - 1;
@@ -122,11 +136,14 @@ function App() {
       const poolBalance = await genToken.balanceOf(pairAddr);
       const wbnbContract = new ethers.Contract(WBNB_TOKEN_ADDRESS, erc20Abi, provider);
       const bnbInPool = await wbnbContract.balanceOf(pairAddr);
-      const derivedBNB = parseFloat(ethers.utils.formatEther(bnbInPool))/parseFloat(ethers.utils.formatUnits(poolBalance,5));
-      const bnbPrice = getBNBPrice();
-      const price = parseFloat(bnbPrice)*derivedBNB.toFixed(6);
+      const derivedBNB = parseFloat(ethers.utils.formatEther(bnbInPool)) / parseFloat(ethers.utils.formatUnits(poolBalance, 5));
+      // console.log("derivedBNB:", derivedBNB);
+
+      const bnbPrice = await getBNBPrice();
+      // console.log("bnbPrice:", bnbPrice);
+      const price = parseFloat(bnbPrice) * derivedBNB
       setTokenPrice(price);
-      console.log("[GEN] :: Price of GEN = %s $", price);
+      // console.log("[GEN] :: Price of GEN = %s $", price);
       return price;
     } catch (err) {
       console.log("[GEN] Getting price of token error!");
@@ -137,18 +154,18 @@ function App() {
   const getBNBPrice = async () => {
     const url = 'https://deep-index.moralis.io/api/v2/erc20/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c/price?chain=bsc';
     const resp = await axios.get(url,
-        {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                "X-API-Key": "YEEwMh0B4VRg6Hu5gFQcKxqinJ7UizRza1JpbkyMgNTfj4jUkSaZVajOxLNabvnt"
-            }
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          "X-API-Key": "YEEwMh0B4VRg6Hu5gFQcKxqinJ7UizRza1JpbkyMgNTfj4jUkSaZVajOxLNabvnt"
         }
+      }
     );
 
     // console.log("Price get result:",resp);
     return resp.data.usdPrice;
-}
+  }
 
   async function getWalletInfo(web3Provider, genToken) {
     if (typeof web3Provider === "undefined" ||
@@ -222,7 +239,7 @@ function App() {
   //       }
   //   } else {
   //   }
-// };
+  // };
 
 
 
@@ -231,18 +248,22 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" exact element={
-        <Dashboard 
-          setmobMenu={handlerSetmonMenu} 
-          setModal={handlerSetModal} 
-          tokenPrice={tokenPrice}
-          totalSupply={totalSupply}
-          circulatingSupply={circulatingSupply}
-          treasuryBalance={treasuryBalance}
-          GIFBalance={GIFBalance}
-          poolBalance={poolBalance}
-          firePitBalance={firePitBalance} 
-          />} />
+        <Route path="/" exact element={init ?
+          <Dashboard
+            setmobMenu={handlerSetmonMenu}
+            setModal={handlerSetModal}
+            tokenPrice={tokenPrice}
+            totalSupply={totalSupply}
+            circulatingSupply={circulatingSupply}
+            treasuryBalance={treasuryBalance}
+            GIFBalance={GIFBalance}
+            poolBalance={poolBalance}
+            firePitBalance={firePitBalance}
+            interval={interval}
+            remainTime={remainTime}
+            setInit={setInit}
+          /> : <Loading/>}
+        />
         <Route path="/account" exact element={<Account setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} />} />
         <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} />} />
       </Routes>

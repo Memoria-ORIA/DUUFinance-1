@@ -1,14 +1,20 @@
 import React from "react";
 import MenuIcon from "../../assets/images/menu.svg";
 import "./dashboard.css";
-
+import {numberWithCommas} from '../../utils/numberUtils.ts';
+import CountDown from '../../components/CountDown';
 import Sidebar from "../../components/Sidebar/Sidebar";
 const Dashboard = ({setmobMenu, setModal, ...props}) => {
 
-	console.log(props);
-	const {tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance} = props
+	// console.log(props);
+	const {tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit} = props
 	const marketCap = parseFloat(totalSupply)*parseFloat(tokenPrice);
-	
+	const treasuryVal = parseFloat(treasuryBalance)*parseFloat(tokenPrice);
+	const GIFVal = parseFloat(GIFBalance)*parseFloat(tokenPrice);
+	const poolVal = parseFloat(poolBalance)*parseFloat(tokenPrice);
+	const firePitVal = parseFloat(firePitBalance)*parseFloat(tokenPrice);
+	const firePitPercent = parseFloat(firePitBalance)/parseFloat(totalSupply);
+
 	return (
 		<>
 			<div className="root-container">
@@ -37,15 +43,15 @@ const Dashboard = ({setmobMenu, setModal, ...props}) => {
 							<div className="dashboard-data-wrap">
 								<div className="heading-wrap">
 									<span>GEN Price</span>
-									<h5>${props.tokenPrice}</h5>
+									<h5>${numberWithCommas(tokenPrice)}</h5>
 								</div>
 								<div className="heading-wrap">
 									<span>Market Cap</span>
-									<h5>${}</h5>
+									<h5>${numberWithCommas(marketCap)}</h5>
 								</div>
 								<div className="heading-wrap">
 									<span>Circulating Supply</span>
-									<h5>542,881.91</h5>
+									<h5>{numberWithCommas(circulatingSupply)}</h5>
 								</div>
 
 							<div className="heading-wrap">
@@ -54,11 +60,11 @@ const Dashboard = ({setmobMenu, setModal, ...props}) => {
 							</div>
 							<div className="heading-wrap">
 								<span>Next Rebase</span>
-								<h5>00:15:00</h5>
+								<h5><CountDown interval={interval} remainTime = {remainTime} setInit={setInit}></CountDown></h5>
 							</div>
 							<div className="heading-wrap">
 								<span>Total Supply</span>
-								<h5>640,029.55</h5>
+								<h5>{numberWithCommas(totalSupply)}</h5>
 							</div>
 							</div>
 						</div>
@@ -66,40 +72,40 @@ const Dashboard = ({setmobMenu, setModal, ...props}) => {
 							<div className="grid-data-wrap dashboard-grid-gap">
 								<div className="grid-data-heading">
 									<span>GEN Price</span>
-									<h1>$151.84</h1>
+									<h1>${numberWithCommas(tokenPrice)}</h1>
 								</div>
 							</div>
 							<div className="grid-data-wrap dashboard-grid-gap">
 								<div className="grid-data-heading">
 									<span>Market Value of Treasury Asset</span>
-									<h1>$2,766,562</h1>
+									<h1>${numberWithCommas(treasuryVal)}</h1>
 								</div>
 							</div>
 							<div className="grid-data-wrap dashboard-grid-gap-mob">
 								<div className="grid-data-heading">
 									<span>Pool Value</span>
-									<h1>$15,989,753</h1>
+									<h1>${numberWithCommas(poolVal)}</h1>
 								</div>
 							</div>
 							<div className="grid-data-wrap">
 								<div className="grid-data-heading">
 									<span>GEN Insurance Fund Value</span>
-									<h1>$2,030,858</h1>
+									<h1>${numberWithCommas(GIFVal)}</h1>
 								</div>
 							</div>
 						</div>
 						<div className="dashboard-firepit-container">
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>
-								<h1>97,195.42 GEN</h1>
+								<h1>{numberWithCommas(firePitBalance)} GEN</h1>
 							</div>
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>
-								<h1>97,195.42 GEN</h1>
+								<h1>${numberWithCommas(firePitVal)}</h1>
 							</div>
 							<div className="firepit-wrap">
-								<span># Value of FirePit</span>
-								<h1>97,195.42 GEN</h1>
+								<span>%FirePit:Supply</span>
+								<h1>{numberWithCommas(firePitPercent)} %</h1>
 							</div>
 						</div>
 					</div>
