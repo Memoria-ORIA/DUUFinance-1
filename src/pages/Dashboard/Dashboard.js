@@ -3,7 +3,12 @@ import MenuIcon from "../../assets/images/menu.svg";
 import "./dashboard.css";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
-const Dashboard = ({setmobMenu, setModal}) => {
+const Dashboard = ({setmobMenu, setModal, ...props}) => {
+
+	console.log(props);
+	const {tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance} = props
+	const marketCap = parseFloat(totalSupply)*parseFloat(tokenPrice);
+	
 	return (
 		<>
 			<div className="root-container">
@@ -32,11 +37,11 @@ const Dashboard = ({setmobMenu, setModal}) => {
 							<div className="dashboard-data-wrap">
 								<div className="heading-wrap">
 									<span>GEN Price</span>
-									<h5>$151.73</h5>
+									<h5>${props.tokenPrice}</h5>
 								</div>
 								<div className="heading-wrap">
 									<span>Market Cap</span>
-									<h5>$82,356,514</h5>
+									<h5>${}</h5>
 								</div>
 								<div className="heading-wrap">
 									<span>Circulating Supply</span>
