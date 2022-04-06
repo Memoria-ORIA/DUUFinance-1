@@ -12,8 +12,6 @@ import erc20Abi from './abis/ERC20.json';
 import { ethers } from 'ethers';
 import axios from 'axios'
 import Loading from './components/Loading';
-// const Web3 = require('web3');
-
 
 
 // mainnet
@@ -57,18 +55,7 @@ function App() {
     setModal(!Modal)
   }
 
-  async function test() {
 
-    // const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
-    // var Contract = require('web3-eth-contract');
-
-    // // set provider for all later instances to use
-    // Contract.setProvider('ws://localhost:8546');
-
-    // const contract = web3.eth.Contract((jsonInterface, address);
-
-
-  }
 
   // event on initialize page.
   useEffect(() => {
@@ -79,18 +66,12 @@ function App() {
     // return () => clearInterval(interval);
   }, [init]);
 
-  // async function InitPage() {
-  //   await refreshPage();
-  //   // await conntectWallet();
-  //   console.log("[GEN] Page Initialized");
-  // }
+
 
   async function refreshPage() {
     try {
 
-      // const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
-      // const contract = web3.eth.Contract(genTokenAbi, GEN_TOKEN_ADDRESS);
-      // console.log("web3_contract:",contract)
+
       const provider = new ethers.providers.JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545');
       // const signer = await provider.getSigner();
       const genTokenContract = new ethers.Contract(GEN_TOKEN_ADDRESS, genTokenAbi, provider);

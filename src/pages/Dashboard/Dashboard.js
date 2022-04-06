@@ -4,6 +4,8 @@ import "./dashboard.css";
 import {numberWithCommas} from '../../utils/numberUtils.ts';
 import CountDown from '../../components/CountDown';
 import Sidebar from "../../components/Sidebar/Sidebar";
+import Wallet from "../../components/Wallet";
+
 const Dashboard = ({setmobMenu, setModal, ...props}) => {
 
 	// console.log(props);
@@ -30,11 +32,14 @@ const Dashboard = ({setmobMenu, setModal, ...props}) => {
 								<li><a href="/">GEN</a>
 								<ul className="dropdown">
 									<li>
-									<a href="/">Buy on bog swap</a>
+									<a href="https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on bog swap</a>
 									</li>
 								</ul>
 								</li>
-								<li><a href="/" onClick={setModal}>Connect Wallet</a></li>
+								<li>
+									{/* <a href="/" onClick={setModal}>Connect Wallet</a> */}
+									<Wallet/>
+								</li>
 							</ul>
 						</div>
 					</div>
