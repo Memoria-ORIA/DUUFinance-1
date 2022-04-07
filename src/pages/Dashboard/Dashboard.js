@@ -8,7 +8,7 @@ import Wallet from "../../components/Wallet";
 
 const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 
-	const {tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit} = props
+	const {chainId, setChainId, tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit} = props
 	const marketCap = parseFloat(totalSupply)*parseFloat(tokenPrice);
 	const treasuryVal = parseFloat(treasuryBalance)*parseFloat(tokenPrice);
 	const GIFVal = parseFloat(GIFBalance)*parseFloat(tokenPrice);
@@ -37,7 +37,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 								</li>
 								<li>
 									{/* <a href="/" onClick={setModal}>Connect Wallet</a> */}
-									<Wallet setAccount={setAccount}/>
+									<Wallet account={account} setAccount={setAccount} chainId= {chainId} setChainId = {setChainId}/>
 								</li>
 							</ul>
 						</div>

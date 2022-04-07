@@ -7,7 +7,7 @@ import Wallet from "../../components/Wallet";
 import { numberWithCommas } from '../../utils/numberUtils.ts';
 const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
 
-	let { tokenPrice, balance, interval, setInit } = props;
+	let {chainId, setChainId, tokenPrice, balance, interval, setInit } = props;
 	tokenPrice = parseFloat(tokenPrice).toFixed(3)
 	balance = parseFloat(balance).toFixed(3)
 	const rate = 1.004;
@@ -104,7 +104,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 										</li>
 									</ul>
 								</li>
-								<li><Wallet setAccount={setAccount}/></li>
+								<li><Wallet account={account} setAccount={setAccount} chainId= {chainId} setChainId = {setChainId}/></li>
 							</ul>
 						</div>
 					</div>

@@ -8,7 +8,7 @@ import {numberWithCommas} from '../../utils/numberUtils.ts';
 
 const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 	const rate = 1.004;
-	const {tokenPrice, balance, interval, remainTime,setInit} = props;
+	const {chainId, setChainId, tokenPrice, balance, interval, remainTime,setInit} = props;
 	console.log("BBBB",balance, numberWithCommas(balance));
 	const tokenUSD =parseFloat(tokenPrice)*parseFloat(balance);
 	const nextRewardAmount = parseFloat(balance)*(rate-1);
@@ -40,7 +40,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 									</li>
 								</ul>
 								</li>
-								<li><Wallet setAccount={setAccount}/></li>
+								<li><Wallet account={account} setAccount={setAccount} chainId= {chainId} setChainId = {setChainId}/></li>
 							</ul>
 						</div>
 					</div>

@@ -13,10 +13,10 @@ const web3Modal = new Web3Modal({
 export default function Wallet(props) {
   const [provider, setProvider] = useState();
   const [library, setLibrary] = useState();
-  const [account, setAccount] = useState();
+  const [account, setAccount] = useState(props.account);
   const [signature, setSignature] = useState("");
   const [error, setError] = useState("");
-  const [chainId, setChainId] = useState();
+  const [chainId, setChainId] = useState(props.chainId);
   const [network, setNetwork] = useState();
   const [message, setMessage] = useState("");
   const [signedMessage, setSignedMessage] = useState("");
@@ -32,7 +32,6 @@ export default function Wallet(props) {
       setLibrary(library);
       if (accounts) setAccount(accounts[0]);
       setChainId(network.chainId);
-      console.log("ChainId:",chainId);
     } catch (error) {
       setError(error);
     }
@@ -121,6 +120,10 @@ export default function Wallet(props) {
   useEffect(() => {
     props.setAccount(account);
   }, [account]);
+
+  useEffect(() => {
+    props.setChainId(chainId);
+  }, [chainId]);
 
   useEffect(() => {
     if (provider?.on) {

@@ -42,6 +42,7 @@ function App() {
   const [interval, setIntervalSec] = useState(8 * 3600);
   const [remainTime, setRemainTime] = useState(0);
   const [account, setAccount] = useState("");
+  const [chainId, setChainId] = useState("");
 
 
   const [walletBalance, setWalletBalance] = useState(0);
@@ -190,6 +191,8 @@ function App() {
             setModal={handlerSetModal}
             account= {account}
             setAccount = {setAccount}
+            chainId= {chainId}
+            setChainId = {setChainId}
             tokenPrice={tokenPrice}
             totalSupply={totalSupply}
             circulatingSupply={circulatingSupply}
@@ -203,11 +206,11 @@ function App() {
           /> : <Loading/>}
         />
         <Route path="/account" exact element={<Account setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account= {account}
-            setAccount = {setAccount} tokenPrice={tokenPrice} balance={walletBalance} interval={interval} remainTime={remainTime}
+            setAccount = {setAccount} chainId= {chainId} setChainId = {setChainId}tokenPrice={tokenPrice} balance={walletBalance} interval={interval} remainTime={remainTime}
             setInit={setInit}
             />} />
         <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account= {account}
-            setAccount = {setAccount} tokenPrice={tokenPrice} balance={walletBalance} interval={interval}/>} />
+            setAccount = {setAccount} chainId= {chainId} setChainId = {setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval}/>} />
       </Routes>
       <MobSidebar mobMenu={mobMenu} setmobMenu={handlerSetmonMenu} />
       {/* <WalletModal Modal={Modal} setModal={handlerSetModal} /> */}
