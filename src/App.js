@@ -25,7 +25,7 @@ const WBNB_TOKEN_ADDRESS = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd";
 
 function App() {
   const [mobMenu, setmobMenu] = useState(false)
-  const [Modal, setModal] = useState(false)
+  // const [Modal, setModal] = useState(false)
   const handlerSetmonMenu = () => {
     setmobMenu(!mobMenu)
   }
@@ -41,6 +41,7 @@ function App() {
 
   const [interval, setIntervalSec] = useState(8 * 3600);
   const [remainTime, setRemainTime] = useState(0);
+  const [account, setAccount] = useState("");
 
 
   const [walletBalance, setWalletBalance] = useState(0);
@@ -49,10 +50,13 @@ function App() {
   const [nextRewardYield, setNextRewardYield] = useState();
   const [roi, setRoi] = useState();
 
+  const provider = new ethers.providers.JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545');
+  const genTokenContract = new ethers.Contract(GEN_TOKEN_ADDRESS, genTokenAbi, provider);
+
   const handlerSetModal = () => {
     // event.preventDefault()
     console.log('clicked');
-    setModal(!Modal)
+    // setModal(!Modal)
   }
 
 
@@ -66,19 +70,14 @@ function App() {
     // return () => clearInterval(interval);
   }, [init]);
 
+  useEffect(() => {
+    getWalletInfo(account, genTokenContract);
+  }, [account]);
+
 
 
   async function refreshPage() {
     try {
-
-
-      const provider = new ethers.providers.JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545');
-      // const signer = await provider.getSigner();
-      const genTokenContract = new ethers.Contract(GEN_TOKEN_ADDRESS, genTokenAbi, provider);
-
-
-
-
       const tokenPrice = await getTokenPriceByPair(genTokenContract, provider);
 
       const totalSupply = await genTokenContract.totalSupply();
@@ -94,16 +93,8 @@ function App() {
       const deltaTime = parseInt(utcTimestamp / 1000) - parseInt(lRTime);
       const remainTime = interval - deltaTime % interval;
       setRemainTime(remainTime);
-
-      console.log("remainTime:", remainTime);
+      
       setInit(true);
-
-      // const balance = await getWalletInfo(provider, genTokenContract);
-      // const rewards = CalculateRewardsCustom(REBASE_FREQ) - 1;
-      // setNextRewardYield((rewards*100).toFixed(5));
-      // setNextRewardAmount(rewards * balance);
-      // const fiveDayReawards = CalculateRewardsCustom(MIN_PER_DAY*5) - 1;
-      // setRoi(truncateDecimals(fiveDayReawards*100, 2));
     }
     catch (err) {
       console.log("[gen] Refresh page. error! (%s)", err.message);
@@ -148,16 +139,14 @@ function App() {
     return resp.data.usdPrice;
   }
 
-  async function getWalletInfo(web3Provider, genToken) {
-    if (typeof web3Provider === "undefined" ||
-      typeof genToken === "undefined") {
+  async function getWalletInfo(account, genToken) {
+    if (!account) {
+      setWalletBalance(0);
       return 0;
     }
     try {
-      const signer = web3Provider.getSigner(); // user
-      const contractUser = await signer.getAddress();
-      const tokenBalance = await genToken.balanceOf(contractUser);
-      const balance = ethers.utils.formatEther(tokenBalance)
+      const tokenBalance = await genToken.balanceOf(account);
+      const balance = ethers.utils.formatUnits(tokenBalance,5);
       setWalletBalance(balance.toString());
       return balance;
     } catch (err) {
@@ -192,40 +181,6 @@ function App() {
     return 0;
   }
 
-  // const connectWallet = async () => {
-  //   const { ethereum } = window;
-  //   const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
-  //   console.log(ethereum);
-  //   if (metamaskIsInstalled) {
-  //       Web3EthContract.setProvider(ethereum);
-  //       try {
-  //           var accounts = await ethereum.request({
-  //               method: "eth_requestAccounts",
-  //           });
-  //           var networkId = await ethereum.request({
-  //               method: "net_version",
-  //           });
-  //           if (networkId == CONFIG.NETWORK.ID) {
-  //               const SmartContractObj = new Web3EthContract(
-  //                   contractABI,
-  //                   CONFIG.CONTRACT_ADDRESS,
-  //                   {from: accounts[0]}
-  //               );
-  //               window.contract = SmartContractObj;
-  //               ethereum.on("chainChanged", () => {
-  //                   window.location.reload();
-  //               });
-  //           }
-  //       } catch (err) {
-  //       }
-  //   } else {
-  //   }
-  // };
-
-
-
-
-
   return (
     <>
       <Routes>
@@ -233,6 +188,8 @@ function App() {
           <Dashboard
             setmobMenu={handlerSetmonMenu}
             setModal={handlerSetModal}
+            account= {account}
+            setAccount = {setAccount}
             tokenPrice={tokenPrice}
             totalSupply={totalSupply}
             circulatingSupply={circulatingSupply}
@@ -245,11 +202,14 @@ function App() {
             setInit={setInit}
           /> : <Loading/>}
         />
-        <Route path="/account" exact element={<Account setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} />} />
+        <Route path="/account" exact element={<Account setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account= {account}
+            setAccount = {setAccount} tokenPrice={tokenPrice} balance={walletBalance} interval={interval} remainTime={remainTime}
+            setInit={setInit}
+            />} />
         <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} />} />
       </Routes>
       <MobSidebar mobMenu={mobMenu} setmobMenu={handlerSetmonMenu} />
-      <WalletModal Modal={Modal} setModal={handlerSetModal} />
+      {/* <WalletModal Modal={Modal} setModal={handlerSetModal} /> */}
     </>
   );
 }

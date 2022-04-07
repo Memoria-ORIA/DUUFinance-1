@@ -2,12 +2,30 @@ import React from "react";
 import MenuIcon from "../../assets/images/menu.svg";
 import "./account.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
-const Account = ({setmobMenu, setModal}) => {
+import Wallet from "../../components/Wallet";
+import CountDown from '../../components/CountDown';
+import {numberWithCommas} from '../../utils/numberUtils.ts';
+
+const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
+	const rate = 1.004;
+	const {tokenPrice, balance, interval, remainTime,setInit} = props;
+	console.log("BBBB",balance, numberWithCommas(balance));
+	const tokenUSD =parseFloat(tokenPrice)*parseFloat(balance);
+	const nextRewardAmount = parseFloat(balance)*(rate-1);
+	const nextRewardYield = 100*(rate-1);
+	const nextRewardUSD = nextRewardAmount*parseFloat(tokenPrice);
+	const apy = 100*(rate**(365*24*3600/interval)-1);
+	const roi_1day = 100*(rate**(24*3600/interval)-1);
+	const roi_1dayUSD = parseFloat(tokenUSD)*roi_1day/100;
+
+	const roi_5day = 100*(rate**(5*24*3600/interval)-1);
+	const roi_5dayUSD = parseFloat(tokenUSD)*roi_5day/100;
+
 	return (
 		<>
 			<div className="root-container">
 				<div className= "sidebar">
-					<Sidebar/>
+					<Sidebar account={account}/>
 				</div>
 				<div className="main-container">
 					<div className="topbar">
@@ -15,14 +33,14 @@ const Account = ({setmobMenu, setModal}) => {
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a href="/">GEN</a>
+								<li><a >GEN</a>
 								<ul className="dropdown">
 									<li>
-									<a href="/">Buy on bog swap</a>
+									<a href="https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on bog swap</a>
 									</li>
 								</ul>
 								</li>
-								<li><a href="/" onClick={setModal}>Connect Wallet</a></li>
+								<li><Wallet setAccount={setAccount}/></li>
 							</ul>
 						</div>
 					</div>
@@ -32,48 +50,48 @@ const Account = ({setmobMenu, setModal}) => {
 							<div className="account-detail-container">
 								<div className="acc-detail-wrap">
 									<span>Your Balance</span>
-									<h1>$0</h1>
-									<span>0 GEN</span>
+									<h1>${numberWithCommas(tokenUSD)}</h1>
+									<span>{numberWithCommas(balance)} GEN</span>
 								</div>
 								<div className="acc-detail-wrap">
 									<span>APY</span>
-									<h1>383,025.8%</h1>
-									<span>Daily ROI 2.28%</span>
+									<h1>{numberWithCommas(apy)}%</h1>
+									<span>Daily ROI {numberWithCommas(roi_1day)}%</span>
 								</div>
 								<div className="acc-detail-wrap">
 									<span>Next Rebase:</span>
-									<h1>Next Rebase:</h1>
+									<h1><CountDown interval={interval} remainTime = {remainTime} setInit={setInit}></CountDown></h1>
 									<span>You will earn money soon</span>
 								</div>
 							</div>
 							<div className="account-matrix-wrap">
 								<div className="account-data">
 									<p>Current GEN Price</p>
-									<span className="color-white">$150.76</span>
+									<span className="color-white">${numberWithCommas(tokenPrice)}</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount</p>
-									<span className="color-white">0 GEN</span>
+									<span className="color-white">{numberWithCommas(nextRewardAmount)} GEN</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount USD</p>
-									<span>$0</span>
+									<span>${numberWithCommas(nextRewardUSD)}</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Yield</p>
-									<span className="color-white">0.02355%</span>
+									<span className="color-white">{numberWithCommas(nextRewardYield)}%</span>
 								</div>
 								<div className="account-data">
 									<p>ROI (1-Day Rate) USD</p>
-									<span className="color-white">76.80%</span>
+									<span className="color-white">${numberWithCommas(roi_1dayUSD)}</span>
 								</div>
 								<div className="account-data">
 									<p>ROI (5-Day Rate)</p>
-									<span className="color-white">11.96%</span>
+									<span className="color-white">{numberWithCommas(roi_5day)}%</span>
 								</div>
 								<div className="account-data">
 									<p>ROI (5-Day Rate) USD</p>
-									<span className="color-white">USD</span>
+									<span className="color-white">${numberWithCommas(roi_5dayUSD)}</span>
 								</div>
 
 							</div>

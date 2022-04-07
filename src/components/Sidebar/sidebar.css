@@ -18,6 +18,16 @@
 .sidebar-img .icon{
 	width: 150px;
 }
+.wallet-link{
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	font-family: 'Montserrat', sans-serif;
+	padding: 8px 0px 8px 20px ;
+	width: 150px;
+	font-size: 18px;
+	font-weight: 600;
+}
 
 .sidebar-navigation {
 	padding: 16px;

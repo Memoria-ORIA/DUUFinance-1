@@ -3,6 +3,8 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import MenuIcon from "../../assets/images/menu.svg";
 import "./calculator.css";
 import Slider from "../../components/Slider/Slider";
+import Wallet from "../../components/Wallet";
+import {numberWithCommas} from '../../utils/numberUtils.ts';
 const Calculator = ({setmobMenu, setModal}) => {
 	    const [parentVal, setParentVal] = useState(1);
 

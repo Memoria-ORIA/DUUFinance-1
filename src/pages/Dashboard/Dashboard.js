@@ -6,9 +6,8 @@ import CountDown from '../../components/CountDown';
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Wallet from "../../components/Wallet";
 
-const Dashboard = ({setmobMenu, setModal, ...props}) => {
+const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 
-	// console.log(props);
 	const {tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit} = props
 	const marketCap = parseFloat(totalSupply)*parseFloat(tokenPrice);
 	const treasuryVal = parseFloat(treasuryBalance)*parseFloat(tokenPrice);
@@ -21,7 +20,7 @@ const Dashboard = ({setmobMenu, setModal, ...props}) => {
 		<>
 			<div className="root-container">
 				<div className="sidebar">
-					<Sidebar/>
+					<Sidebar account={account}/>
 				</div>
 				<div className="main-container">
 					<div className="topbar">
@@ -29,7 +28,7 @@ const Dashboard = ({setmobMenu, setModal, ...props}) => {
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a href="/">GEN</a>
+								<li><a >GEN</a>
 								<ul className="dropdown">
 									<li>
 									<a href="https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on bog swap</a>
@@ -38,7 +37,7 @@ const Dashboard = ({setmobMenu, setModal, ...props}) => {
 								</li>
 								<li>
 									{/* <a href="/" onClick={setModal}>Connect Wallet</a> */}
-									<Wallet/>
+									<Wallet setAccount={setAccount}/>
 								</li>
 							</ul>
 						</div>
