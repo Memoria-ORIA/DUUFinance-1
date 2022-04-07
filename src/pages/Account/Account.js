@@ -8,12 +8,13 @@ import {numberWithCommas} from '../../utils/numberUtils.ts';
 
 const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 	const rate = 1.004;
-	const {chainId, setChainId, tokenPrice, balance, interval, remainTime,setInit} = props;
-	console.log("BBBB",balance, numberWithCommas(balance));
-	const tokenUSD =parseFloat(tokenPrice)*parseFloat(balance);
+	let {chainId, setChainId, tokenPrice, balance, interval, remainTime,setInit} = props;
+	// console.log("BBBB",balance, numberWithCommas(balance));
+	tokenPrice = parseFloat(tokenPrice).toFixed(3);
+	const tokenUSD =(tokenPrice)*parseFloat(balance);
 	const nextRewardAmount = parseFloat(balance)*(rate-1);
 	const nextRewardYield = 100*(rate-1);
-	const nextRewardUSD = nextRewardAmount*parseFloat(tokenPrice);
+	const nextRewardUSD = nextRewardAmount*(tokenPrice);
 	const apy = 100*(rate**(365*24*3600/interval)-1);
 	const roi_1day = 100*(rate**(24*3600/interval)-1);
 	const roi_1dayUSD = parseFloat(tokenUSD)*roi_1day/100;
@@ -31,6 +32,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 					<div className="topbar">
 						<div className="connect-wallet-btn">
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
+							<h2><i>Release Version 1.0</i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
 								<li><a >GEN</a>

@@ -15,7 +15,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 	const [parentVal, setParentVal] = useState(1);
 
 	const sliderValueChanged = useCallback(val => {
-		console.log("NEW VALUE", val);
+		// console.log("NEW VALUE", val);
 		setParentVal(val);
 	});
 
@@ -95,6 +95,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 					<div className="topbar">
 						<div className="connect-wallet-btn">
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
+							<h2><i>Release Version 1.0</i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
 								<li><a >GEN</a>

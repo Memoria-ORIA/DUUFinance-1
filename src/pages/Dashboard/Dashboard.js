@@ -8,12 +8,13 @@ import Wallet from "../../components/Wallet";
 
 const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 
-	const {chainId, setChainId, tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit} = props
-	const marketCap = parseFloat(totalSupply)*parseFloat(tokenPrice);
-	const treasuryVal = parseFloat(treasuryBalance)*parseFloat(tokenPrice);
-	const GIFVal = parseFloat(GIFBalance)*parseFloat(tokenPrice);
-	const poolVal = parseFloat(poolBalance)*parseFloat(tokenPrice);
-	const firePitVal = parseFloat(firePitBalance)*parseFloat(tokenPrice);
+	let {chainId, setChainId, tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit} = props
+	tokenPrice = parseFloat(tokenPrice).toFixed(3);
+	const marketCap = parseFloat(totalSupply)*(tokenPrice);
+	const treasuryVal = parseFloat(treasuryBalance)*(tokenPrice);
+	const GIFVal = parseFloat(GIFBalance)*(tokenPrice);
+	const poolVal = parseFloat(poolBalance)*(tokenPrice);
+	const firePitVal = parseFloat(firePitBalance)*(tokenPrice);
 	const firePitPercent = parseFloat(firePitBalance)/parseFloat(totalSupply);
 
 	return (
@@ -26,6 +27,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 					<div className="topbar">
 						<div className="connect-wallet-btn">
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
+							<h2><i>Release Version 1.0</i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
 								<li><a >GEN</a>

@@ -7,61 +7,75 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
 html {
 	scroll-behavior: smooth;
 }
+
 body {
 	background: url(../src/assets/images/background-image.jpg);
-	background-position:center ;
+	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-color:#040a04;
+	background-color: #040a04;
 	color: #ffffff;
 	overflow-x: hidden;
 	font-family: 'Montserrat', sans-serif;
 }
+
 button {
 	border: none;
 	outline: none;
 }
+
 a {
 	text-decoration: none;
 }
-ul li{
+
+ul li {
 	list-style: none;
 }
+
 img {
 	width: 100%;
 }
+
 ::-webkit-scrollbar {
 	width: 0px;
 }
+
 ::-webkit-scrollbar-track {
 	border-radius: 0rem;
 }
+
 ::-webkit-scrollbar-thumb {
 	border-radius: 0rem;
 }
+
 /* Utility classes */
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
 }
+
 .color-red {
 	color: #f1bebe;
 }
-.color-green{
+
+.color-green {
 	color: #26E2B3;
 }
-.color-white{
-	color: #D0DCE8;;
+
+.color-white {
+	color: #D0DCE8;
+	;
 }
 
 
 /* Top Navbar */
 .topbar {
-	background: #040a04;
+
 	padding: 20px 16px;
 	position: sticky;
 	z-index: 100;
@@ -69,26 +83,30 @@ img {
 	top: 0;
 	transition: 0.5s;
 }
+
 .connect-wallet-btn {
 	text-align: end;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
-.connect-wallet-btn  ul{
-display: flex;
-align-items: center;
-position: relative;
-float: left;
+
+.connect-wallet-btn ul {
+	display: flex;
+	align-items: center;
+	position: relative;
+	float: left;
 }
-.connect-wallet-btn ul li{
+
+.connect-wallet-btn ul li {
 	margin-left: 12px;
 	position: relative;
 	float: left;
 }
-.connect-wallet-btn ul .menu__icon{
+
+.connect-wallet-btn ul .menu__icon {
 	cursor: pointer;
-	background: hsla(0,0%,100%,.2);
+	background: hsla(0, 0%, 100%, .2);
 	padding: 8px;
 	display: flex;
 	align-items: center;
@@ -98,19 +116,22 @@ float: left;
 	transform: scale(0);
 	cursor: pointer;
 }
-.connect-wallet-btn ul li a{
+
+.connect-wallet-btn ul li a {
 	color: #ffffff;
 	font-size: 16px;
 	padding: 8px 14px;
 	display: block;
 	border-radius: 6px;
 	font-weight: 600;
-	background: hsla(0,0%,100%,.2);
+	background: hsla(0, 0%, 100%, .2);
 	cursor: pointer;
 }
-.connect-wallet-btn ul li a:hover{
-    background-color: rgba(255, 255, 255, 0.15) !important;
+
+.connect-wallet-btn ul li a:hover {
+	background-color: rgba(255, 255, 255, 0.15) !important;
 }
+
 .connect-wallet-btn ul ul {
 	position: absolute;
 	border-radius: 16px;
@@ -121,18 +142,21 @@ float: left;
 	transition: 0.25s ease-in;
 	margin-top: 3px;
 }
+
 .connect-wallet-btn ul ul li {
 	float: none;
 	width: 180px;
 	text-align: center;
 	margin-left: -25px;
 }
-.connect-wallet-btn ul li li a{
+
+.connect-wallet-btn ul li li a {
 	background: #040a04;
 	padding: 12px 0px;
 	transition: 0.25s ease-in;
 }
-.connect-wallet-btn ul li:hover > ul {
+
+.connect-wallet-btn ul li:hover>ul {
 	opacity: 1;
 	transform: scaleZ(1);
 	transition: 0.25s ease-in;
@@ -150,32 +174,39 @@ float: left;
 	.sidebar {
 		display: none;
 	}
+
 	.connect-wallet-btn ul li:first-child {
 		opacity: 1;
 		transform: scale(1);
 	}
 }
-@media (max-width:557px){
+
+@media (max-width:557px) {
+
 	.icon-tab,
-	.connect-wallet-btn ul .menu__icon{
+	.connect-wallet-btn ul .menu__icon {
 		display: none;
 	}
+
 	.connect-wallet-btn .icon-mob {
-	width: 20px;
-	opacity: 1;
-	transform: scale(1);
+		width: 20px;
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.topbar {
+		background-color: #040a04;
+	}
 }
-.topbar{
-	background-color:#040a04;
-}
-}
-@media (max-width:420px){
-	.topbar{
+
+@media (max-width:420px) {
+	.topbar {
 		padding: 16px;
 	}
-	.connect-wallet-btn ul li{
-	margin-left: 6px;
-}
+
+	.connect-wallet-btn ul li {
+		margin-left: 6px;
+	}
 }
 
 
@@ -185,26 +216,29 @@ float: left;
  * ----------------------------------------
  */
 @-webkit-keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
+	0% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
 }
+
 @keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
+	0% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
 }

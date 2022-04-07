@@ -60,11 +60,13 @@ function App() {
     // setModal(!Modal)
   }
 
-
+  useEffect(() => {
+    const interval = setInterval(refreshPage, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   // event on initialize page.
   useEffect(() => {
-    // const interval = setInterval(refreshPage, 3000);
     if (!init) {
       refreshPage();
     }
@@ -94,7 +96,7 @@ function App() {
       const deltaTime = parseInt(utcTimestamp / 1000) - parseInt(lRTime);
       const remainTime = interval - deltaTime % interval;
       setRemainTime(remainTime);
-      
+
       setInit(true);
     }
     catch (err) {
@@ -147,7 +149,7 @@ function App() {
     }
     try {
       const tokenBalance = await genToken.balanceOf(account);
-      const balance = ethers.utils.formatUnits(tokenBalance,5);
+      const balance = ethers.utils.formatUnits(tokenBalance, 5);
       setWalletBalance(balance.toString());
       return balance;
     } catch (err) {
@@ -189,10 +191,10 @@ function App() {
           <Dashboard
             setmobMenu={handlerSetmonMenu}
             setModal={handlerSetModal}
-            account= {account}
-            setAccount = {setAccount}
-            chainId= {chainId}
-            setChainId = {setChainId}
+            account={account}
+            setAccount={setAccount}
+            chainId={chainId}
+            setChainId={setChainId}
             tokenPrice={tokenPrice}
             totalSupply={totalSupply}
             circulatingSupply={circulatingSupply}
@@ -203,14 +205,16 @@ function App() {
             interval={interval}
             remainTime={remainTime}
             setInit={setInit}
-          /> : <Loading/>}
+          /> : <Loading />}
         />
-        <Route path="/account" exact element={<Account setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account= {account}
-            setAccount = {setAccount} chainId= {chainId} setChainId = {setChainId}tokenPrice={tokenPrice} balance={walletBalance} interval={interval} remainTime={remainTime}
+        <Route path="/account" exact element={init ?
+          <Account setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account={account}
+            setAccount={setAccount} chainId={chainId} setChainId={setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval} remainTime={remainTime}
             setInit={setInit}
-            />} />
-        <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account= {account}
-            setAccount = {setAccount} chainId= {chainId} setChainId = {setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval}/>} />
+          /> : <Loading />}
+        />
+        <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account={account}
+          setAccount={setAccount} chainId={chainId} setChainId={setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval} />} />
       </Routes>
       <MobSidebar mobMenu={mobMenu} setmobMenu={handlerSetmonMenu} />
       {/* <WalletModal Modal={Modal} setModal={handlerSetModal} /> */}
