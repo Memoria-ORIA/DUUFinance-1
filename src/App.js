@@ -206,7 +206,8 @@ function App() {
             setAccount = {setAccount} tokenPrice={tokenPrice} balance={walletBalance} interval={interval} remainTime={remainTime}
             setInit={setInit}
             />} />
-        <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} />} />
+        <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account= {account}
+            setAccount = {setAccount} tokenPrice={tokenPrice} balance={walletBalance} interval={interval}/>} />
       </Routes>
       <MobSidebar mobMenu={mobMenu} setmobMenu={handlerSetmonMenu} />
       {/* <WalletModal Modal={Modal} setModal={handlerSetModal} /> */}

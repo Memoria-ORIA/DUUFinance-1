@@ -12,7 +12,7 @@ const Slider = memo(
     useEffect(() => {
       setSliderVal(value);
       document.getElementById("myRange").oninput = function() {
-			console.log('Hello');
+			// console.log('Hello');
 		var value = (this.value-this.min)/(this.max-this.min)*100
 		this.style.background = 'linear-gradient(90deg, #a6daad, #53f369  ' + value + '%, #232323 ' + value + '%, #232323 100%)'
       }
@@ -20,14 +20,15 @@ const Slider = memo(
 
     const changeCallback = e => {
       setSliderVal(e.target.value);
+      onChange(e.target.value);
     };
 
     useEffect(() => {
-      if (mouseState === "up") {
+      if (mouseState === "up" || mouseState === "move") {
         onChange(sliderVal);
       }
     }, [mouseState]);
-    console.log("RENDER");
+    // console.log("RENDER");
     return (
         <>
       <div className="range-container">

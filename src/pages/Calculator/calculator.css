@@ -75,6 +75,7 @@
     font-weight: 600;
     padding-right: 12px;
     color: #ffffff;
+	cursor: pointer;
 }
 .field input{
     width: 100%;
