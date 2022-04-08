@@ -213,8 +213,11 @@ function App() {
             setInit={setInit}
           /> : <Loading />}
         />
-        <Route path="/calculator" exact element={<Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account={account}
-          setAccount={setAccount} chainId={chainId} setChainId={setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval} />} />
+        <Route path="/calculator" exact element={init ?
+          <Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account={account}
+            setAccount={setAccount} chainId={chainId} setChainId={setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval}
+          /> : <Loading />}
+        />
       </Routes>
       <MobSidebar mobMenu={mobMenu} setmobMenu={handlerSetmonMenu} />
       {/* <WalletModal Modal={Modal} setModal={handlerSetModal} /> */}
