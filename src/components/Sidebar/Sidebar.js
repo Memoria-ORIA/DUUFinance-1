@@ -21,7 +21,7 @@ export default function Sidebar(props) {
                         {account?
                             <li>
                                 <span>
-                                    <a href={url} style={{ paddingLeft: "30px", color: "blueviolet", fontSize: "15px" }} target="_blank">{dispaccount}</a>
+                                    <a href={url} style={{ paddingLeft: "30px", fontSize: "15px" }} target="_blank">{dispaccount}</a>
                                 </span>
                             </li> :
                             <li></li>

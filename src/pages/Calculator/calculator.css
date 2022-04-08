@@ -89,6 +89,10 @@
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 .field input::placeholder{
     font-family: 'Montserrat', sans-serif;
     color: hsla(0,0%,100%,.6);

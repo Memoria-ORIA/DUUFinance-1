@@ -32,13 +32,13 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 					<div className="topbar">
 						<div className="connect-wallet-btn">
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
-							<h2><i>Release Version 1.0</i></h2>
+							<h2><i></i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
 								<li><a >GEN</a>
 								<ul className="dropdown">
 									<li>
-									<a href="https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on bog swap</a>
+									<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
 									</li>
 								</ul>
 								</li>

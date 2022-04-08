@@ -12,7 +12,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 	balance = parseFloat(balance).toFixed(3)
 	const rate = 1.004;
 	const currentApy = (100*(rate**(365*24*3600/interval)-1)).toFixed(3);
-	const [parentVal, setParentVal] = useState(1);
+	const [parentVal, setParentVal] = useState(30);
 
 	const sliderValueChanged = useCallback(val => {
 		// console.log("NEW VALUE", val);
@@ -32,9 +32,9 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 	);
 
 	const [amount, setAmount] = useState(0);
-	const [apy, setAPY] = useState(0);
-	const [price1, setPrice1] = useState(0);
-	const [price2, setPrice2] = useState(0);
+	const [apy, setAPY] = useState(currentApy);
+	const [price1, setPrice1] = useState(tokenPrice);
+	const [price2, setPrice2] = useState(tokenPrice);
 
 	const handleAmountChange = useCallback(e => {
 		setAmount(e.target.value);
@@ -95,13 +95,13 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 					<div className="topbar">
 						<div className="connect-wallet-btn">
 							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
-							<h2><i>Release Version 1.0</i></h2>
+							<h2><i></i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
 								<li><a >GEN</a>
 									<ul className="dropdown">
 										<li>
-										<a href="https://app.bogged.finance/bsc/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on bog swap</a>
+										<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
 										</li>
 									</ul>
 								</li>
