@@ -19,7 +19,7 @@ import Loading from './components/Loading';
 // const BUSD_TOKEN_ADDRESS  = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
 
 // testnet
-const GEN_TOKEN_ADDRESS = "0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb";
+const GEN_TOKEN_ADDRESS = "0xc32A23562a76854fE01f27d599003ABFddE5C384";
 const BUSD_TOKEN_ADDRESS = "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee ";
 const WBNB_TOKEN_ADDRESS = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd";
 
@@ -39,7 +39,7 @@ function App() {
   const [firePitBalance, setFirePitBalance] = useState(0);
   const [poolBalance, setPoolBalance] = useState(0);
 
-  const [interval, setIntervalSec] = useState(8 * 3600);
+  const [interval, setIntervalSec] = useState(3);
   const [remainTime, setRemainTime] = useState(0);
   const [account, setAccount] = useState("");
   const [chainId, setChainId] = useState("");
@@ -81,7 +81,7 @@ function App() {
 
   async function refreshPage() {
     try {
-      const tokenPrice = await getTokenPriceByPair(genTokenContract, provider);
+      await getTokenPriceByPair(genTokenContract, provider);
 
       const totalSupply = await genTokenContract.totalSupply();
       setTotalSupply(ethers.utils.formatUnits(totalSupply, 5))// * tokenPrice).toFixed(2));
@@ -89,14 +89,15 @@ function App() {
       const circulatingSupply = await genTokenContract.getCirculatingSupply()
       setCirculatingSupply(ethers.utils.formatUnits(circulatingSupply, 5))// * tokenPrice).toFixed(2));
 
-      const balances = await getBalancesInfo(genTokenContract)
+      await getBalancesInfo(genTokenContract)
 
       const lRTime = await genTokenContract._lastRebasedTime();
       const utcTimestamp = new Date().getTime();
       const deltaTime = parseInt(utcTimestamp / 1000) - parseInt(lRTime);
       const remainTime = interval - deltaTime % interval;
       setRemainTime(remainTime);
-
+      // console.log("[tz]: interval:", interval);
+      // console.log("[tz]: remainTime:", remainTime);
       setInit(true);
     }
     catch (err) {
@@ -164,7 +165,7 @@ function App() {
     }
     try {
       const treasuryAddr = await genToken.treasuryReceiver();
-      const GIFAddr = await genToken.genInsuranceFundReceiver();
+      const GIFAddr = await genToken.insuranceReceiver();
       const firePitAddr = await genToken.firePit();
       const poolAddr = await genToken.pair();
 
@@ -187,7 +188,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" exact element={init ?
+        <Route path="/" exact element={init?
           <Dashboard
             setmobMenu={handlerSetmonMenu}
             setModal={handlerSetModal}
@@ -205,18 +206,18 @@ function App() {
             interval={interval}
             remainTime={remainTime}
             setInit={setInit}
-          /> : <Loading />}
+          /> : <Loading/>}
         />
-        <Route path="/account" exact element={init ?
+        <Route path="/account" exact element={ init? 
           <Account setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account={account}
             setAccount={setAccount} chainId={chainId} setChainId={setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval} remainTime={remainTime}
             setInit={setInit}
-          /> : <Loading />}
+          /> : <Loading/>}
         />
-        <Route path="/calculator" exact element={init ?
+        <Route path="/calculator" exact element={ init ?
           <Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account={account}
             setAccount={setAccount} chainId={chainId} setChainId={setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval}
-          /> : <Loading />}
+          /> : <Loading/>}
         />
       </Routes>
       <MobSidebar mobMenu={mobMenu} setmobMenu={handlerSetmonMenu} />

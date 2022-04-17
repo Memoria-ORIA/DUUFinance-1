@@ -1,18 +1,19 @@
 .calc-container{
-    max-width: 780px;
+    max-width: 90%;
     margin: 0 auto;
     border-radius: 10px;
     transition: 0.5s;
 	/* background: rgba(36, 39, 41, 0.671); */
-    background: #181818c9;
+    background: #1e2735;
     -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
     padding: 16px 32px;
+    font-size: 20px;
 	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 .calc-heading h2{
-    font-size: 20px;
+    font-size: 25px;
     color: #ffffff;
 }
 .calc-heading span{
@@ -28,7 +29,7 @@
     text-align: center;
 }
 .calc-price-wrap h2{
-    font-size: 20px;
+    font-size: 25px;
 }
 .calc-price-wrap .color-white{
     font-weight: 400;
@@ -147,7 +148,7 @@ input::-webkit-inner-spin-button {
 
 @media (min-width:1650px){
     .calc-container{
-    max-width: 1100px;
+    max-width: 90%;
 }
 
 }

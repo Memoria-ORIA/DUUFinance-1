@@ -1,6 +1,6 @@
 
 .account-container{
-    max-width: 800px;
+    max-width: 90%;
     margin: 0 auto;
 }
 
@@ -14,7 +14,7 @@
     text-align: center;
     padding: 18px 0px;
     border: 1px solid #62745e56;
-    background-color: rgba(0,0,0,.2);
+    background-color: #1e2735;
     -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -24,13 +24,15 @@
 }
 .acc-detail-wrap h1{
     color: #61ce70;
-    font-size: 24px;
+    font-size: 30px;
 }
 .account-matrix-wrap {
     margin-top: 28px;
     border-radius: 10px;
     padding-right: 24px;
-    background-color: rgba(0, 0, 0, 0.26);
+    font-size: 20px;
+    font-weight: 500em;
+    background-color: #1e2735;
 	border: 1px solid #62745e56;
     -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

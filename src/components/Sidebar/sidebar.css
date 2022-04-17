@@ -5,6 +5,7 @@
 	height: 100%;
 	z-index: 1000;
 	transition: 0.5s;
+	border-right: solid 3px #6e6e6e;
 }
 
 .sidebar-wrap {
@@ -38,7 +39,7 @@
 .sidebar-navigation ul li {
 	display: flex; 
 	align-items: center;
-	margin: 16px 0px;
+	margin: 32px 0px;
 	padding: 0px 12px;
 	
 }
@@ -49,7 +50,7 @@
 	font-family: 'Montserrat', sans-serif;
 	padding: 8px 0px 8px 20px ;
 	width: 150px;
-	font-size: 18px;
+	font-size: 21px;
 	font-weight: 600;
 	
 }

@@ -7,7 +7,7 @@ import CountDown from '../../components/CountDown';
 import {numberWithCommas} from '../../utils/numberUtils.ts';
 
 const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
-	const rate = 1.004;
+	const rate = 1.000000858;
 	let {chainId, setChainId, tokenPrice, balance, interval, remainTime,setInit} = props;
 	// console.log("BBBB",balance, numberWithCommas(balance));
 	tokenPrice = parseFloat(tokenPrice).toFixed(3);
@@ -15,11 +15,11 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 	const nextRewardAmount = parseFloat(balance)*(rate-1);
 	const nextRewardYield = 100*(rate-1);
 	const nextRewardUSD = nextRewardAmount*(tokenPrice);
-	const apy = 100*(rate**(365*24*3600/interval)-1);
-	const roi_1day = 100*(rate**(24*3600/interval)-1);
+	const apy = 100 * rate**(365*24*3600/interval);
+	const roi_1day = 100 * (rate**(24*3600/interval));
 	const roi_1dayUSD = parseFloat(tokenUSD)*roi_1day/100;
 
-	const roi_5day = 100*(rate**(5*24*3600/interval)-1);
+	const roi_5day = 100 * (rate**(5*24*3600/interval));
 	const roi_5dayUSD = parseFloat(tokenUSD)*roi_5day/100;
 
 	return (
@@ -35,7 +35,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 							<h2><i></i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a >GEN</a>
+								<li><a >LION</a>
 								<ul className="dropdown">
 									<li>
 									<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
@@ -53,7 +53,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 								<div className="acc-detail-wrap">
 									<span>Your Balance</span>
 									<h1>${numberWithCommas(tokenUSD)}</h1>
-									<span>{numberWithCommas(balance)} GEN</span>
+									<span>{numberWithCommas(balance)} LION</span>
 								</div>
 								<div className="acc-detail-wrap">
 									<span>APY</span>
@@ -68,12 +68,12 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 							</div>
 							<div className="account-matrix-wrap">
 								<div className="account-data">
-									<p>Current GEN Price</p>
+									<p>Current LION Price</p>
 									<span className="color-white">${numberWithCommas(tokenPrice)}</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount</p>
-									<span className="color-white">{numberWithCommas(nextRewardAmount)} GEN</span>
+									<span className="color-white">{numberWithCommas(nextRewardAmount)} LION</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount USD</p>

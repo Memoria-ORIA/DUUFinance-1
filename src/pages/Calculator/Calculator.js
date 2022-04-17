@@ -10,8 +10,8 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 	let {chainId, setChainId, tokenPrice, balance, interval, setInit } = props;
 	tokenPrice = parseFloat(tokenPrice).toFixed(3)
 	balance = parseFloat(balance).toFixed(3)
-	const rate = 1.004;
-	const currentApy = (100*(rate**(365*24*3600/interval)-1)).toFixed(3);
+	const rate = 1.000000858;
+	const currentApy = (100*(rate**(365*24*3600/interval))).toFixed(3);
 	const [parentVal, setParentVal] = useState(30);
 
 	const sliderValueChanged = useCallback(val => {
@@ -98,7 +98,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 							<h2><i></i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a >GEN</a>
+								<li><a >LION</a>
 									<ul className="dropdown">
 										<li>
 										<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
@@ -117,7 +117,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 							</div>
 							<div className="calc-price-container">
 								<div className="calc-price-wrap">
-									<h3 className="color-white">GEN Price</h3>
+									<h3 className="color-white">LION Price</h3>
 									<h2>${numberWithCommas(tokenPrice)}</h2>
 								</div>
 								<div className="calc-price-wrap">
@@ -125,13 +125,13 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 									<h2>{numberWithCommas(currentApy)}%</h2>
 								</div>
 								<div className="calc-price-wrap mob-mt">
-									<h3 className="color-white">Your GEN Balance</h3>
-									<h2>{numberWithCommas(balance)} GEN</h2>
+									<h3 className="color-white">Your LION Balance</h3>
+									<h2>{numberWithCommas(balance)} LION</h2>
 								</div>
 							</div>
 							<div className="calc-grid-container">
 								<div className="field-wrap">
-									<span>GEN Amount</span>
+									<span>LION Amount</span>
 									<div className="field">
 										<input type="number" name="amount" id="amount" value={amount} placeholder="Amount" onChange={handleAmountChange}/>
 										<span onClick={handleAmountMax}>Max</span>
@@ -145,14 +145,14 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 									</div>
 								</div>
 								<div className="field-wrap">
-									<span>GEN price at purchase ($)</span>
+									<span>LION price at purchase ($)</span>
 									<div className="field">
 										<input type="number" name="price1" id="price1" value={price1} placeholder="Price" onChange={handlePrice1Change} />
 										<span onClick={handlePrice1Current}>Current</span>
 									</div>
 								</div>
 								<div className="field-wrap">
-									<span>Future GEN market price ($)</span>
+									<span>Future LION market price ($)</span>
 									<div className="field">
 										<input type="number" name="price2" id="price2" value={price2} placeholder="Price" onChange={handlePrice2Change}/>
 										<span onClick={handlePrice2Current}>Current</span>
@@ -170,8 +170,8 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 									<span>${currentWealth}</span>
 								</div>
 								<div className="data">
-									<p>GEN rewards estimation</p>
-									<span>{rewardsEstimation} GEN</span>
+									<p>LION rewards estimation</p>
+									<span>{rewardsEstimation} LION</span>
 								</div>
 								<div className="data">
 									<p>Potential return</p>

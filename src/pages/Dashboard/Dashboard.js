@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MenuIcon from "../../assets/images/menu.svg";
 import "./dashboard.css";
 import {numberWithCommas} from '../../utils/numberUtils.ts';
@@ -16,6 +16,11 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 	const poolVal = parseFloat(poolBalance)*(tokenPrice);
 	const firePitVal = parseFloat(firePitBalance)*(tokenPrice);
 	const firePitPercent = parseFloat(firePitBalance)/parseFloat(totalSupply);
+	console.log("remain in dashboard", remainTime);
+	useEffect(()=>{
+		console.log("changed remainTime: ", remainTime);
+	}, [remainTime]);
+
 
 	return (
 		<>
@@ -30,7 +35,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 							<h2><i></i></h2>
 							<ul>
 								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a >GEN</a>
+								<li><a >LION</a>
 								<ul className="dropdown">
 									<li>
 									<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
@@ -48,7 +53,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 						<div className="dashboard-data-container">
 							<div className="dashboard-data-wrap">
 								<div className="heading-wrap">
-									<span>GEN Price</span>
+									<span>LION Price</span>
 									<h5>${numberWithCommas(tokenPrice)}</h5>
 								</div>
 								<div className="heading-wrap">
@@ -77,7 +82,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 						<div className="dashboard-grid-container">
 							<div className="grid-data-wrap dashboard-grid-gap">
 								<div className="grid-data-heading">
-									<span>GEN Price</span>
+									<span>LION Price</span>
 									<h1>${numberWithCommas(tokenPrice)}</h1>
 								</div>
 							</div>
@@ -95,7 +100,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 							</div>
 							<div className="grid-data-wrap">
 								<div className="grid-data-heading">
-									<span>GEN Insurance Fund Value</span>
+									<span>LION Insurance Fund Value</span>
 									<h1>${numberWithCommas(GIFVal)}</h1>
 								</div>
 							</div>
@@ -103,7 +108,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 						<div className="dashboard-firepit-container">
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>
-								<h1>{numberWithCommas(firePitBalance)} GEN</h1>
+								<h1>{numberWithCommas(firePitBalance)} LION</h1>
 							</div>
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>

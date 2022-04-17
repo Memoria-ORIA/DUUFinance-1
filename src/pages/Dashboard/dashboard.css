@@ -15,15 +15,15 @@
 }
 
 .main-container-area {
-	padding:24px 50px 50px 0px;
-	max-width: 1400px;
+	padding:24px 50px 50px 24px;
+	max-width: 90%;
 	margin: 0 auto;
 	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 .dashboard-data-container{
 	border-radius: 10px;
-	background: #09160c;
+	background: #1e2735;
 	border: 1px solid #62745e;
 	transition: 0.5s;
 	-webkit-backdrop-filter: blur(100px);
@@ -46,11 +46,11 @@
 .firepit-wrap span{
 	color: hsla(0,0%,100%,.6);
 	line-height: 1.5;
-	font-size: 15px;
+	font-size: 25px;
 }
 .heading-wrap h5,
 .firepit-wrap h1{
-	font-size: 20px;
+	font-size: 25px;
 	color: #ffffff;
 }
 
@@ -63,7 +63,7 @@
 .grid-data-wrap, 
 .firepit-wrap {
 	border-radius: 10px;
-	background: #09160c;
+	background: #1e2735;
 	border: 1px solid #62745e;
 	transition: 0.5s;
 	-webkit-backdrop-filter: blur(100px);
@@ -74,11 +74,12 @@
 }
 .grid-data-heading h1{
 	color: #ffffff;
-	font-size: 20px;
+	font-size: 25px;
 	margin-top: 8px;
 }
 .grid-data-heading span{
 	color: hsla(0,0%,100%,.6);
+	font-size: 25px;
 }
 .dashboard-firepit-container {
 	display: grid;
