@@ -19,8 +19,8 @@ import Loading from './components/Loading';
 // const BUSD_TOKEN_ADDRESS  = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
 
 // testnet
-const GEN_TOKEN_ADDRESS = "0xc32A23562a76854fE01f27d599003ABFddE5C384";
-const BUSD_TOKEN_ADDRESS = "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee ";
+const GEN_TOKEN_ADDRESS = "0xf579672fb0902653aF33d5B84F8889bb3Bb25543";
+const BUSD_TOKEN_ADDRESS = "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7 ";
 const WBNB_TOKEN_ADDRESS = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd";
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
   const [firePitBalance, setFirePitBalance] = useState(0);
   const [poolBalance, setPoolBalance] = useState(0);
 
-  const [interval, setIntervalSec] = useState(3);
+  const [interval, setIntervalSec] = useState(1800);
   const [remainTime, setRemainTime] = useState(0);
   const [account, setAccount] = useState("");
   const [chainId, setChainId] = useState("");
@@ -61,7 +61,7 @@ function App() {
   }
 
   useEffect(() => {
-    const interval = setInterval(refreshPage, 3000);
+    const interval = setInterval(refreshPage, 1000 * 1800);
     return () => clearInterval(interval);
   }, []);
 

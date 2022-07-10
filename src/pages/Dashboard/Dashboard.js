@@ -53,7 +53,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 						<div className="dashboard-data-container">
 							<div className="dashboard-data-wrap">
 								<div className="heading-wrap">
-									<span>LION Price</span>
+									<span>OMI Price</span>
 									<h5>${numberWithCommas(tokenPrice)}</h5>
 								</div>
 								<div className="heading-wrap">
@@ -82,7 +82,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 						<div className="dashboard-grid-container">
 							<div className="grid-data-wrap dashboard-grid-gap">
 								<div className="grid-data-heading">
-									<span>LION Price</span>
+									<span>OMI Price</span>
 									<h1>${numberWithCommas(tokenPrice)}</h1>
 								</div>
 							</div>
@@ -100,7 +100,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 							</div>
 							<div className="grid-data-wrap">
 								<div className="grid-data-heading">
-									<span>LION Insurance Fund Value</span>
+									<span>OMI Insurance Fund Value</span>
 									<h1>${numberWithCommas(GIFVal)}</h1>
 								</div>
 							</div>
@@ -108,7 +108,7 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 						<div className="dashboard-firepit-container">
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>
-								<h1>{numberWithCommas(firePitBalance)} LION</h1>
+								<h1>{numberWithCommas(firePitBalance)} OMI</h1>
 							</div>
 							<div className="firepit-wrap">
 								<span># Value of FirePit</span>

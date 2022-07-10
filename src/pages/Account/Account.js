@@ -7,7 +7,7 @@ import CountDown from '../../components/CountDown';
 import {numberWithCommas} from '../../utils/numberUtils.ts';
 
 const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
-	const rate = 1.000000858;
+	const rate = 1.00039566;
 	let {chainId, setChainId, tokenPrice, balance, interval, remainTime,setInit} = props;
 	// console.log("BBBB",balance, numberWithCommas(balance));
 	tokenPrice = parseFloat(tokenPrice).toFixed(3);
@@ -68,7 +68,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 							</div>
 							<div className="account-matrix-wrap">
 								<div className="account-data">
-									<p>Current LION Price</p>
+									<p>Current OMI Price</p>
 									<span className="color-white">${numberWithCommas(tokenPrice)}</span>
 								</div>
 								<div className="account-data">

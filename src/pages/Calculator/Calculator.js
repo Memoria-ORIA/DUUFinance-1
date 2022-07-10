@@ -117,7 +117,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 							</div>
 							<div className="calc-price-container">
 								<div className="calc-price-wrap">
-									<h3 className="color-white">LION Price</h3>
+									<h3 className="color-white">OMI Price</h3>
 									<h2>${numberWithCommas(tokenPrice)}</h2>
 								</div>
 								<div className="calc-price-wrap">
@@ -125,13 +125,13 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 									<h2>{numberWithCommas(currentApy)}%</h2>
 								</div>
 								<div className="calc-price-wrap mob-mt">
-									<h3 className="color-white">Your LION Balance</h3>
-									<h2>{numberWithCommas(balance)} LION</h2>
+									<h3 className="color-white">Your OMI Balance</h3>
+									<h2>{numberWithCommas(balance)} OMI</h2>
 								</div>
 							</div>
 							<div className="calc-grid-container">
 								<div className="field-wrap">
-									<span>LION Amount</span>
+									<span>OMI Amount</span>
 									<div className="field">
 										<input type="number" name="amount" id="amount" value={amount} placeholder="Amount" onChange={handleAmountChange}/>
 										<span onClick={handleAmountMax}>Max</span>
@@ -145,14 +145,14 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 									</div>
 								</div>
 								<div className="field-wrap">
-									<span>LION price at purchase ($)</span>
+									<span>OMI price at purchase ($)</span>
 									<div className="field">
 										<input type="number" name="price1" id="price1" value={price1} placeholder="Price" onChange={handlePrice1Change} />
 										<span onClick={handlePrice1Current}>Current</span>
 									</div>
 								</div>
 								<div className="field-wrap">
-									<span>Future LION market price ($)</span>
+									<span>Future OMI market price ($)</span>
 									<div className="field">
 										<input type="number" name="price2" id="price2" value={price2} placeholder="Price" onChange={handlePrice2Change}/>
 										<span onClick={handlePrice2Current}>Current</span>
