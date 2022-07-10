@@ -68,7 +68,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 							</div>
 							<div className="account-matrix-wrap">
 								<div className="account-data">
-									<p>Current OMI Price</p>
+									<p>Current UMI Price</p>
 									<span className="color-white">${numberWithCommas(tokenPrice)}</span>
 								</div>
 								<div className="account-data">
