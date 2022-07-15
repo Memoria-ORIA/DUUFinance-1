@@ -1,10 +1,13 @@
 import React from "react";
 import MenuIcon from "../../assets/images/menu.svg";
-import "./account.css";
+import "./analytics.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Wallet from "../../components/Wallet";
 import CountDown from '../../components/CountDown';
 import {numberWithCommas} from '../../utils/numberUtils.ts';
+import happyImage from '../../assets/images/earn.png';
+import sadImage from '../../assets/images/lose.png';
+import metre from '../../assets/images/metrc.png';
 
 const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 	const rate = 1.00039566;
@@ -51,19 +54,26 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 
 							<div className="account-detail-container">
 								<div className="acc-detail-wrap">
-									<span>Your Balance</span>
+									<span>How much you have invested so far</span>
+									<div>
+										<img className="icon" src={happyImage} alt="happy Logo" />
+									</div>
+									<span>Total investment</span>
 									<h1>${numberWithCommas(tokenUSD)}</h1>
-									<span>{numberWithCommas(balance)} LION</span>
 								</div>
 								<div className="acc-detail-wrap">
-									<span>APY</span>
-									<h1>{numberWithCommas(apy)}%</h1>
-									<span>Daily ROI {numberWithCommas(roi_1day)}%</span>
+									<span>Risk Meter</span>
+									<div>
+										<img style={{width:"150px"}} src={metre} alt="happy Logo" />
+									</div>
 								</div>
 								<div className="acc-detail-wrap">
-									<span>Next Rebase:</span>
-									<h1><CountDown interval={interval} remainTime = {remainTime} setInit={setInit}></CountDown></h1>
-									<span>You will earn money soon</span>
+									<span>How much you have withdrawn so far</span>
+									<div>
+										<img className="icon" src={sadImage} alt="happy Logo" />
+									</div>
+									<span>Total Earned</span>
+									<h1>${numberWithCommas(tokenUSD)}</h1>
 								</div>
 							</div>
 							<div className="account-matrix-wrap">

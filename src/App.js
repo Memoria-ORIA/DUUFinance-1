@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import { Routes, Route } from "react-router-dom";
 import Calculator from './pages/Calculator/Calculator';
 import Account from './pages/Account/Account';
+import Analytics from './pages/Analytics/Analytics';
 import MobSidebar from './components/MobSidebar/MobSidebar';
 import WalletModal from './components/WalletModal/WalletModal';
 import routerAbi from './abis/ROUTER.json';
@@ -217,6 +218,19 @@ function App() {
         <Route path="/calculator" exact element={ init ?
           <Calculator setmobMenu={handlerSetmonMenu} setModal={handlerSetModal} account={account}
             setAccount={setAccount} chainId={chainId} setChainId={setChainId} tokenPrice={tokenPrice} balance={walletBalance} interval={interval}
+          /> : <Loading/>}
+        />
+        <Route path="/analytics" exact element={ init ?
+          <Analytics 
+            setmobMenu={handlerSetmonMenu} 
+            setModal={handlerSetModal} 
+            account={account}
+            setAccount={setAccount} 
+            chainId={chainId} 
+            setChainId={setChainId} 
+            tokenPrice={tokenPrice} 
+            balance={walletBalance} 
+            interval={interval}
           /> : <Loading/>}
         />
       </Routes>

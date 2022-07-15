@@ -8,7 +8,7 @@ import DocIcon from "../../assets/images/document.svg";
 import './sidebar.css'
 export default function Sidebar(props) {
     const account = props.account;
-    const dispaccount = props.account? props.account.substr(0,6) +"..."+props.account.slice(-4):"";
+    const dispaccount = props.account ? props.account.substr(0, 6) + "..." + props.account.slice(-4) : "";
     const url = "https://bscscan.com/address/" + account;
     return (
         <>
@@ -18,7 +18,7 @@ export default function Sidebar(props) {
                 </div>
                 <div className="sidebar-navigation">
                     <ul>
-                        {account?
+                        {account ?
                             <li>
                                 <span>
                                     <a href={url} style={{ paddingLeft: "30px", fontSize: "15px" }} target="_blank">{dispaccount}</a>
@@ -37,9 +37,20 @@ export default function Sidebar(props) {
                                 <span>Account</span></NavLink>
                         </li>
                         <li>
+                            <NavLink to="/#/" activeclassname="active">
+                                <img src={CalcIcon} alt="Calc Icon" />
+                                <span>Swap</span>
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink to="/calculator" activeclassname="active">
                                 <img src={CalcIcon} alt="Calc Icon" />
                                 <span>Calculator</span></NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/analytics" activeclassname="active">
+                                <img src={CalcIcon} alt="Calc Icon" />
+                                <span>Analytics</span></NavLink>
                         </li>
                         <li>
                             <a href="#">
