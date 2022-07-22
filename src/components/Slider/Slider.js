@@ -32,7 +32,7 @@ const Slider = memo(
     return (
         <>
       <div className="range-container">
-        <span>{sliderVal} {sliderVal === 1 ? "day" : 'days'}</span>
+        <span style={{color: "#5d8c4d"}}>{sliderVal} {sliderVal === 1 ? "day" : 'days'}</span>
         <input
           type="range"
           value={sliderVal}

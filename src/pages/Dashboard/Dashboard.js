@@ -1,23 +1,25 @@
 import React, { useEffect } from "react";
 import MenuIcon from "../../assets/images/menu.svg";
 import "./dashboard.css";
-import {numberWithCommas} from '../../utils/numberUtils.ts';
+import { numberWithCommas } from '../../utils/numberUtils.ts';
 import CountDown from '../../components/CountDown';
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Wallet from "../../components/Wallet";
+import TopBar from '../../components/Topbar/Topbar';
 
-const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 
-	let {chainId, setChainId, tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit} = props
+const Dashboard = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
+
+	let { chainId, setChainId, tokenPrice, totalSupply, circulatingSupply, treasuryBalance, GIFBalance, poolBalance, firePitBalance, interval, remainTime, setInit } = props
 	tokenPrice = parseFloat(tokenPrice).toFixed(3);
-	const marketCap = parseFloat(totalSupply)*(tokenPrice);
-	const treasuryVal = parseFloat(treasuryBalance)*(tokenPrice);
-	const GIFVal = parseFloat(GIFBalance)*(tokenPrice);
-	const poolVal = parseFloat(poolBalance)*(tokenPrice);
-	const firePitVal = parseFloat(firePitBalance)*(tokenPrice);
-	const firePitPercent = parseFloat(firePitBalance)/parseFloat(totalSupply);
+	const marketCap = parseFloat(totalSupply) * (tokenPrice);
+	const treasuryVal = parseFloat(treasuryBalance) * (tokenPrice);
+	const GIFVal = parseFloat(GIFBalance) * (tokenPrice);
+	const poolVal = parseFloat(poolBalance) * (tokenPrice);
+	const firePitVal = parseFloat(firePitBalance) * (tokenPrice);
+	const firePitPercent = parseFloat(firePitBalance) / parseFloat(totalSupply);
 	console.log("remain in dashboard", remainTime);
-	useEffect(()=>{
+	useEffect(() => {
 		console.log("changed remainTime: ", remainTime);
 	}, [remainTime]);
 
@@ -26,29 +28,9 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 		<>
 			<div className="root-container">
 				<div className="sidebar">
-					<Sidebar account={account}/>
+					<Sidebar account={account} />
 				</div>
 				<div className="main-container">
-					<div className="topbar">
-						<div className="connect-wallet-btn">
-							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
-							<h2><i></i></h2>
-							<ul>
-								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a >LION</a>
-								<ul className="dropdown">
-									<li>
-									<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
-									</li>
-								</ul>
-								</li>
-								<li>
-									{/* <a href="/" onClick={setModal}>Connect Wallet</a> */}
-									<Wallet account={account} setAccount={setAccount} chainId= {chainId} setChainId = {setChainId}/>
-								</li>
-							</ul>
-						</div>
-					</div>
 					<div className="main-container-area">
 						<div className="dashboard-data-container">
 							<div className="dashboard-data-wrap">
@@ -65,18 +47,18 @@ const Dashboard = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 									<h5>{numberWithCommas(circulatingSupply)}</h5>
 								</div>
 
-							<div className="heading-wrap">
-								<span>Backed Liquidity</span>
-								<h5>100%</h5>
-							</div>
-							<div className="heading-wrap">
-								<span>Next Rebase</span>
-								<h5><CountDown interval={interval} remainTime = {remainTime} setInit={setInit}></CountDown></h5>
-							</div>
-							<div className="heading-wrap">
-								<span>Total Supply</span>
-								<h5>{numberWithCommas(totalSupply)}</h5>
-							</div>
+								<div className="heading-wrap">
+									<span>Backed Liquidity</span>
+									<h5>100%</h5>
+								</div>
+								<div className="heading-wrap">
+									<span>Next Rebase</span>
+									<h5><CountDown interval={interval} remainTime={remainTime} setInit={setInit}></CountDown></h5>
+								</div>
+								<div className="heading-wrap">
+									<span>Total Supply</span>
+									<h5>{numberWithCommas(totalSupply)}</h5>
+								</div>
 							</div>
 						</div>
 						<div className="dashboard-grid-container">

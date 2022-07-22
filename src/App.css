@@ -13,14 +13,12 @@ html {
 }
 
 body {
-	background: url(../src/assets/images/background-image.jpg);
+	/* background: url(../src/assets/images/background.png);
 	background-position: center;
-	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-color: #040a04;
-	color: #ffffff;
-	overflow-x: hidden;
+	color: #ffffff; */
+	/* overflow-x: hidden; */
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -68,7 +66,7 @@ img {
 }
 
 .color-white {
-	color: #D0DCE8;
+	color: #a65794;
 	;
 }
 
@@ -76,7 +74,7 @@ img {
 /* Top Navbar */
 .topbar {
 
-	padding: 20px 16px;
+	padding: 0px;
 	position: sticky;
 	z-index: 100;
 	position: -webkit-sticky;
@@ -84,14 +82,40 @@ img {
 	transition: 0.5s;
 }
 
+.buy-duu-btn {
+	text-align: end;
+	display: flex;
+	align-items: center;
+	background: #E085A3;
+	border-radius: 10px;
+    color: #155025;
+    padding: 10px;
+	cursor: pointer;
+	margin: 0px 20px 0px 30px !important;
+}
+
+.buy-duu-btn:hover {
+	background:#d63b6f !important;
+}
+
+
 .connect-wallet-btn {
 	text-align: end;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	background: #C3DD88;
+	border-radius: 10px;
+    color: #155025;
+    padding: 10px;
+	cursor: pointer;
+	margin: 0px 20px !important;
 }
 
-.connect-wallet-btn ul {
+.connect-wallet-btn:hover {
+	background:#84b31a !important;
+}
+
+/* .connect-wallet-btn ul {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -207,7 +231,7 @@ img {
 	.connect-wallet-btn ul li {
 		margin-left: 6px;
 	}
-}
+} */
 
 
 /**

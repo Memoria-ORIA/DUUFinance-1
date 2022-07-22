@@ -92,28 +92,11 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 					<Sidebar account={account}/>
 				</div>
 				<div className="main-container">
-					<div className="topbar">
-						<div className="connect-wallet-btn">
-							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
-							<h2><i></i></h2>
-							<ul>
-								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a >LION</a>
-									<ul className="dropdown">
-										<li>
-										<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
-										</li>
-									</ul>
-								</li>
-								<li><Wallet account={account} setAccount={setAccount} chainId= {chainId} setChainId = {setChainId}/></li>
-							</ul>
-						</div>
-					</div>
 					<div className="main-container-area">
 						<div className="calc-container">
 							<div className="calc-heading">
-								<h2>Calculator</h2>
-								<span>Estimate your returns</span>
+								<h2 className="duu-purple">Calculator</h2>
+								<span className="duu-green">Estimate your returns</span>
 							</div>
 							<div className="calc-price-container">
 								<div className="calc-price-wrap">
@@ -162,20 +145,20 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 							<Slider {...sliderProps} classes="additional-css-classes" />
 							<div className="calc-matrix color-white">
 								<div className="data">
-									<p>Your initial investment</p>
-									<span>${initialInvest}</span>
+									<p className="duu-green">Your initial investment</p>
+									<span className="duu-purple">${initialInvest}</span>
 								</div>
 								<div className="data">
-									<p>Current wealth</p>
-									<span>${currentWealth}</span>
+									<p className="duu-green">Current wealth</p>
+									<span className="duu-purple">${currentWealth}</span>
 								</div>
 								<div className="data">
-									<p>LION rewards estimation</p>
-									<span>{rewardsEstimation} LION</span>
+									<p className="duu-green">LION rewards estimation</p>
+									<span className="duu-purple">{rewardsEstimation} LION</span>
 								</div>
 								<div className="data">
-									<p>Potential return</p>
-									<span>${potentialReturn}</span>
+									<p className="duu-green">Potential return</p>
+									<span className="duu-purple">${potentialReturn}</span>
 								</div>
 							</div>
 						</div>

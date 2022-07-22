@@ -5,6 +5,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Wallet from "../../components/Wallet";
 import CountDown from '../../components/CountDown';
 import {numberWithCommas} from '../../utils/numberUtils.ts';
+import TopBar from '../../components/Topbar/Topbar';
 
 const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 	const rate = 1.00039566;
@@ -29,23 +30,6 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 					<Sidebar account={account}/>
 				</div>
 				<div className="main-container">
-					<div className="topbar">
-						<div className="connect-wallet-btn">
-							<img src={MenuIcon} className="icon-mob" alt="logo" onClick={setmobMenu} />
-							<h2><i></i></h2>
-							<ul>
-								<li className="menu__icon" onClick={setmobMenu}><img src={MenuIcon} className="icon-tab" alt="menu Icon" /></li>
-								<li><a >LION</a>
-								<ul className="dropdown">
-									<li>
-									<a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Buy on PancakeSwap</a>
-									</li>
-								</ul>
-								</li>
-								<li><Wallet account={account} setAccount={setAccount} chainId= {chainId} setChainId = {setChainId}/></li>
-							</ul>
-						</div>
-					</div>
 					<div className="main-container-area">
 						<div className="account-container">
 
@@ -77,7 +61,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount USD</p>
-									<span>${numberWithCommas(nextRewardUSD)}</span>
+									<span className="color-white">${numberWithCommas(nextRewardUSD)}</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Yield</p>

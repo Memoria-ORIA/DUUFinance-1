@@ -9,7 +9,7 @@ const Loading = () => (
     {list1.map(l => (
       <Article key={l.prop}>
 
-        <ReactLoading type={l.prop} color="#fff" />
+        <ReactLoading type={l.prop} color="#5d8c4d" />
 
         <Prop></Prop>
       </Article>

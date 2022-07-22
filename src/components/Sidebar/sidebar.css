@@ -5,7 +5,6 @@
 	height: 100%;
 	z-index: 1000;
 	transition: 0.5s;
-	border-right: solid 3px #6e6e6e;
 }
 
 .sidebar-wrap {
@@ -14,7 +13,10 @@
 .sidebar-img {
 	display: flex;
 	align-items: center;
-	margin-left: 50px;
+	justify-content: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding:0px;
 }
 .sidebar-img .icon{
 	width: 150px;
@@ -31,7 +33,9 @@
 }
 
 .sidebar-navigation {
-	padding: 16px;
+	width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .sidebar-navigation img {
 	width: 20px;
@@ -40,16 +44,17 @@
 	display: flex; 
 	align-items: center;
 	margin: 32px 0px;
-	padding: 0px 12px;
-	
+	padding: 10px 20px;
 }
+
 .sidebar-navigation ul li a{
 	color: #ffffff;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	font-family: 'Montserrat', sans-serif;
-	padding: 8px 0px 8px 20px ;
-	width: 150px;
+	padding: 8px 30px 8px 30px ;
+	width: 100%;
 	font-size: 21px;
 	font-weight: 600;
 	
@@ -82,4 +87,9 @@
 .fill-svg:hover{
 	transform: scale(1.1);
 	transition: 0.25s;
+}
+
+ul .linkButtons {
+	background-color: #CC7A92;
+	border-radius: 10px;
 }
