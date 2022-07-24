@@ -4,17 +4,17 @@ import { Skeleton } from "@material-ui/lab";
 
 
 
-export function History() {
+export function History({object}) {
     // Use BondPrice as indicator of loading.
 
     return (
       <TableRow >
         <TableCell align="center" className="bond-name-cell">
           <div className="bond-name">
-            sdfds
+            {object.txhash}
           </div>
         </TableCell>
-        <TableCell align="center">sdfd
+        <TableCell align="center">{object.txamount}
         </TableCell>
         <TableCell align="center">dsfd</TableCell>
         <TableCell align="center">

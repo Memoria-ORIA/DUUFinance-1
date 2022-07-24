@@ -7,6 +7,7 @@ import "./Topbar.css";
 import LogoImg from '../../assets/images/duu_logo.png'
 import { NavLink } from "react-router-dom";
 import Social from "./Social";
+import MenuIcon from "../../assets/images/menu.svg";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function TopBar({ account, setAccount, ...props }) {
+function TopBar({ setmobMenu, account, setAccount, ...props }) {
   const classes = useStyles();
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
   const [isActive] = useState();
@@ -100,24 +101,14 @@ function TopBar({ account, setAccount, ...props }) {
   return (
     <AppBar position="sticky" className={classes.appBar} elevation={0}>
       <Toolbar disableGutters className="dapp-topbar">
-        {/* <Button
-          id="hamburger"
-          aria-label="open drawer"
-          edge="start"
-          size="large"
-          variant="contained"
-          color="secondary"
-          onClick={handleDrawerToggle}
-          className={classes.menuButton}
-        >
-        </Button> */}
         <Box id="topbuttongroup" display="flex" justifyContent="space-between" width="100%" marginTop="10px">
           <ButtonGroup />
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            {isSmallScreen ? <img src={MenuIcon} className="icon-mob" alt="logo" style={{ width: "40px", height: "40px" }} onClick={setmobMenu} /> : <div/> }
             <Social />
-            <div className="buy-duu-btn">
+            {/* <div className="buy-duu-btn">
                 <a href="https://pancakeswap.finance/swap?tokenIn=BNB&tokenOut=0x1B6f709Ff948e00F4c2eD8338a00E40863960Cdb" target="_blank">Dinuu</a>
-              </div>
+              </div> */}
             <div className="connect-wallet-btn">
               <Wallet account={account} setAccount={setAccount} chainId={chainId} setChainId={setChainId} />
             </div>

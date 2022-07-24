@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect} from "react";
 import MenuIcon from "../../assets/images/menu.svg";
 import "./analytics.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -15,7 +15,87 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
-  } from "@material-ui/core";
+} from "@material-ui/core";
+import axios from 'axios';
+
+
+const cotpsAbi = [
+	{
+        "outputs": [
+            {
+                "name": "amounts",
+                "internalType": "uint256[]",
+                "type": "uint256[]"
+            }
+        ],
+        "inputs": [
+            {
+                "name": "amountOutMin",
+                "internalType": "uint256",
+                "type": "uint256"
+            },
+            {
+                "name": "path",
+                "internalType": "address[]",
+                "type": "address[]"
+            },
+            {
+                "name": "to",
+                "internalType": "address",
+                "type": "address"
+            },
+            {
+                "name": "deadline",
+                "internalType": "uint256",
+                "type": "uint256"
+            }
+        ],
+        "name": "swapExactETHForTokens",
+        "stateMutability": "payable",
+        "type": "function"
+    },
+	{
+        "outputs": [],
+        "inputs": [
+            {
+                "name": "amountIn",
+                "internalType": "uint256",
+                "type": "uint256"
+            },
+            {
+                "name": "amountOutMin",
+                "internalType": "uint256",
+                "type": "uint256"
+            },
+            {
+                "name": "path",
+                "internalType": "address[]",
+                "type": "address[]"
+            },
+            {
+                "name": "to",
+                "internalType": "address",
+                "type": "address"
+            },
+            {
+                "name": "deadline",
+                "internalType": "uint256",
+                "type": "uint256"
+            }
+        ],
+        "name": "swapExactTokensForETHSupportingFeeOnTransferTokens",
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
+
+const cube2duuRegExp = /^0x7ff36ab5/; // from cube to token
+const duu2cubeRegExp = /^0x791ac947/; // duu to cube
+
+const abiDecoder = require("abi-decoder");
+abiDecoder.addABI(cotpsAbi);
+
+
 
 const Account = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
 	const rate = 1.00039566;
@@ -32,6 +112,59 @@ const Account = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
 
 	const roi_5day = 100 * (rate ** (5 * 24 * 3600 / interval));
 	const roi_5dayUSD = parseFloat(tokenUSD) * roi_5day / 100;
+
+	const [buysellList, setBuySellList] = useState([]);
+
+
+	const getAllBuySellTransaction = async (accountAddr) => {
+
+		const BuyAndSell = [];
+		const urlstr = "https://openapi-testnet.cubescan.network/api?module=account&action=txlist&address=" + accountAddr + "&startblock=0&endblock=99999999&sort=asc&chainId=CUBE";
+		const returnedData = await axios.get(
+			urlstr,
+			{withCredentials: false},
+			{
+				headers: {
+					'X-Requested-With': 'XMLHttpRequest',
+					'Access-Control-Allow-Origin': '*',
+					'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+				}
+			}
+		);
+
+		const parsedData = await returnedData.json();
+		if (parsedData.status === "1") {
+			const transactions = parsedData.result;
+
+			for (const tx of transactions) {
+				if (
+					tx.to === "0x14c02dc9b29ac28e852f740cba6722bc7308feb8" &&
+					tx.isError === "0"
+				) {
+					if (cube2duuRegExp.test(tx.input)) {
+						const decodedData = abiDecoder.decodeMethod(tx.input);
+						const amountBought = decodedData.params[0].value / 10 ** 5;
+						BuyAndSell.push({txamount: amountBought, txhash: tx.hash});
+					}
+					if (duu2cubeRegExp.test(tx.input)) {
+						// const sellReceipt = await web3.eth.getTransactionReceipt(tx.hash);
+						// parseInt(sellReceipt.logs[1].data, 16) / 10 ** 5;
+						const decodedData = abiDecoder.decodeMethod(tx.input);
+						const amountBought = decodedData.params[0].value / 10 ** 5;
+						BuyAndSell.push({txamount: amountBought, txhash: tx.hash});
+					}
+				}
+			}
+		}
+
+	};
+
+
+	useEffect(() => {
+		getAllBuySellTransaction(account).then((buyAndSellObject) =>
+			setBuySellList(buyAndSellObject)
+		);
+	  }, [props]);
 
 	return (
 		<>
@@ -50,7 +183,7 @@ const Account = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
 										<img className="icon" src={happyImage} alt="happy Logo" />
 									</div>
 									<span>Total investment</span>
-									<h1>${numberWithCommas(tokenUSD)}</h1>
+									<h1 style={{ background: "#a65794", borderRadius: "5px", color: "white", margin: "10px 20px" }}>${numberWithCommas(tokenUSD)}</h1>
 								</div>
 								<div className="acc-detail-wrap">
 									<span>Risk Meter</span>
@@ -64,57 +197,31 @@ const Account = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
 										<img className="icon" src={sadImage} alt="happy Logo" />
 									</div>
 									<span>Total Earned</span>
-									<h1>${numberWithCommas(tokenUSD)}</h1>
+									<h1 style={{ background: "#a65794", borderRadius: "5px", color: "white", margin: "10px 20px" }}>${numberWithCommas(tokenUSD)}</h1>
 								</div>
 							</div>
 							<div className="account-matrix-wrap">
 								<div className="account-data">
 									<p className="historyheader">Recent trading history</p>
 								</div>
-								{/* <div className="account-data">
-									<p>Next Reward Amount</p>
-									<span className="color-white">{numberWithCommas(nextRewardAmount)} LION</span>
-								</div>
-								<div className="account-data">
-									<p>Next Reward Amount USD</p>
-									<span>${numberWithCommas(nextRewardUSD)}</span>
-								</div>
-								<div className="account-data">
-									<p>Next Reward Yield</p>
-									<span className="color-white">{numberWithCommas(nextRewardYield)}%</span>
-								</div>
-								<div className="account-data">
-									<p>ROI (1-Day Rate) USD</p>
-									<span className="color-white">${numberWithCommas(roi_1dayUSD)}</span>
-								</div>
-								<div className="account-data">
-									<p>ROI (5-Day Rate)</p>
-									<span className="color-white">{numberWithCommas(roi_5day)}%</span>
-								</div>
-								<div className="account-data">
-									<p>ROI (5-Day Rate) USD</p>
-									<span className="color-white">${numberWithCommas(roi_5dayUSD)}</span>
-								</div> */}
 
-								<TableContainer>
+								<TableContainer className="tableContent">
 									<Table aria-label="Available bonds">
 										<TableHead>
 											<TableRow>
-												<TableCell align="center">Transaction Hash</TableCell>
-												<TableCell align="center">Block number</TableCell>
-												<TableCell align="center">Method</TableCell>
-												<TableCell align="center">Amount</TableCell>
-												<TableCell align="center">$Safuu</TableCell>
-												<TableCell align="center">$BNB</TableCell>
+												<TableCell align="center"><b>Transaction Hash</b></TableCell>
+												<TableCell align="center"><b>Block number</b></TableCell>
+												<TableCell align="center"><b>Method</b></TableCell>
+												<TableCell align="center"><b>Amount</b></TableCell>
+												<TableCell align="center"><b>$DUU</b></TableCell>
+												<TableCell align="center"><b>$BNB</b></TableCell>
 											</TableRow>
 										</TableHead>
 										<TableBody>
-
-										<History />
-										<History />
-										<History />
-										<History />
-
+										{buysellList.map((val, index) => {
+											console.log("------------", index);
+											<History object={val}/>
+										})}
 										</TableBody>
 									</Table>
 								</TableContainer>

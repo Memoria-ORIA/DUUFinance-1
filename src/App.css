@@ -109,6 +109,7 @@ img {
     padding: 10px;
 	cursor: pointer;
 	margin: 0px 20px !important;
+	text-align: "center";
 }
 
 .connect-wallet-btn:hover {

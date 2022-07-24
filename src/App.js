@@ -192,7 +192,8 @@ function App() {
       {init ? <TopBar account={account}
         setAccount={setAccount}
         chainId={chainId}
-        setChainId={setChainId} /> : (
+        setChainId={setChainId}
+        setmobMenu={handlerSetmonMenu} /> : (
           <Loading />
       )}
       <Routes>

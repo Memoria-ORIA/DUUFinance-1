@@ -11,7 +11,7 @@ import './sidebar.css'
 export default function Sidebar(props) {
     const account = props.account;
     const dispaccount = props.account ? props.account.substr(0, 6) + "..." + props.account.slice(-4) : "";
-    const url = "https://bscscan.com/address/" + account;
+    const url = "https://testnet.cubescan.network/" + account;
     return (
         <>
             <div className="sidebar-wrap">
