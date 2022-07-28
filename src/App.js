@@ -26,8 +26,13 @@ import TopBar from './components/Topbar/Topbar';
 // test router : https://testnet.cubescan.network/en-us/address/0x14c02dc9b29ac28e852f740cba6722bc7308feb8?tab=Transactions
 
 
-const GEN_TOKEN_ADDRESS = "0x81186E77c327b7D55Ca740Cd99B047e03a79946E";
-const WBNB_TOKEN_ADDRESS = "0xB9164670A2F388D835B868b3D0D441fa1bE5bb00";
+// bsc mainnet.
+// token:   0xe0bb399ffa185b963dc8B93B7862BEae7C78cc24
+
+
+
+const GEN_TOKEN_ADDRESS = "0x129E4917934BDb4Ec432cD8F6c36601Ed4A8Ca0d";
+const WBNB_TOKEN_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
 
 function App() {
   const [mobMenu, setmobMenu] = useState(false)
@@ -57,7 +62,7 @@ function App() {
   const [nextRewardYield, setNextRewardYield] = useState();
   const [roi, setRoi] = useState();
 
-  const provider = new ethers.providers.JsonRpcProvider('https://http-testnet.cube.network');
+  const provider = new ethers.providers.JsonRpcProvider('https://bsc-dataseed1.binance.org/');
   const genTokenContract = new ethers.Contract(GEN_TOKEN_ADDRESS, genTokenAbi, provider);
 
   const handlerSetModal = () => {
@@ -89,7 +94,7 @@ function App() {
 
   async function refreshPage() {
     try {
-      await getTokenPriceByPair(genTokenContract, provider);
+      // await getTokenPriceByPair(genTokenContract, provider);
 
       const totalSupply = await genTokenContract.totalSupply();
       setTotalSupply(ethers.utils.formatUnits(totalSupply, 5))// * tokenPrice).toFixed(2));
@@ -136,7 +141,8 @@ function App() {
   }
 
   const getCubePrice = async () => {
-    const res = await axios.get('https://api.dexscreener.com/latest/dex/pairs/cube/0x5d3aD1Fe9beEE77167033dF7E9F43020f1071e41');
+    // const res = await axios.get('https://api.dexscreener.com/latest/dex/pairs/cube/0x5d3aD1Fe9beEE77167033dF7E9F43020f1071e41');
+    const res = await axios.get('https://api.dexscreener.com/latest/dex/pairs/bsc/0x16b9a82891338f9bA80E2D6970FddA79D1eb0daE');
     const marketPrice = res.data["pair"].priceUsd;
 
     console.log("[tz] Cube Price get result:", marketPrice);

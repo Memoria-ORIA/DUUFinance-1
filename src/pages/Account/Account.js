@@ -8,7 +8,7 @@ import {numberWithCommas} from '../../utils/numberUtils.ts';
 import TopBar from '../../components/Topbar/Topbar';
 
 const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
-	const rate = 1.00039566;
+	const rate = 1.00047104;
 	let {chainId, setChainId, tokenPrice, balance, interval, remainTime,setInit} = props;
 	// console.log("BBBB",balance, numberWithCommas(balance));
 	tokenPrice = parseFloat(tokenPrice).toFixed(3);
@@ -37,11 +37,11 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 								<div className="acc-detail-wrap">
 									<span>Your Balance</span>
 									<h1>${numberWithCommas(tokenUSD)}</h1>
-									<span>{numberWithCommas(balance)} LION</span>
+									<span>{numberWithCommas(balance)} DUU</span>
 								</div>
 								<div className="acc-detail-wrap">
 									<span>APY</span>
-									<h1>{numberWithCommas(apy)}%</h1>
+									<h1>383025.8%</h1>
 									<span>Daily ROI {numberWithCommas(roi_1day)}%</span>
 								</div>
 								<div className="acc-detail-wrap">
@@ -57,7 +57,7 @@ const Account = ({setmobMenu, setModal, account, setAccount, ...props}) => {
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount</p>
-									<span className="color-white">{numberWithCommas(nextRewardAmount)} LION</span>
+									<span className="color-white">{numberWithCommas(nextRewardAmount)} DUU</span>
 								</div>
 								<div className="account-data">
 									<p>Next Reward Amount USD</p>

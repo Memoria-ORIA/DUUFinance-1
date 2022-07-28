@@ -48,7 +48,7 @@ export default function Wallet(props) {
   //   };
 
   const switchNetwork = async () => {
-    const toNetworkId = 1819;
+    const toNetworkId = 56;
     try {
       await library.provider.request({
         method: "wallet_switchEthereumChain",
@@ -161,7 +161,7 @@ export default function Wallet(props) {
       {!account ? (
         <a onClick={connectWallet}>Connect Wallet</a>
       ) : (
-        chainId===1819?
+        chainId===56?
         <a onClick={disconnect}>Disconnect</a>:
         <a onClick={switchNetwork}>Wrong Network</a>
       )}

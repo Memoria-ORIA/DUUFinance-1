@@ -11,7 +11,7 @@ import './sidebar.css'
 export default function Sidebar(props) {
     const account = props.account;
     const dispaccount = props.account ? props.account.substr(0, 6) + "..." + props.account.slice(-4) : "";
-    const url = "https://testnet.cubescan.network/" + account;
+    const url = "https://bscscan.com/address/" + account;
     return (
         <>
             <div className="sidebar-wrap">
@@ -39,7 +39,7 @@ export default function Sidebar(props) {
                                 <span>Account</span></NavLink>
                         </li>
                         <li className='linkButtons'>
-                            <a href="https://www.capricorn.finance/swap" activeclassname="active" target="_blank">
+                            <a href="https://pancakeswap.finance/swap" activeclassname="active" target="_blank">
                                 <img src={CalcIcon} alt="Calc Icon" />
                                 <span>Swap</span>
                             </a>

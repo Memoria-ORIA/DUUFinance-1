@@ -10,7 +10,7 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 	let {chainId, setChainId, tokenPrice, balance, interval, setInit } = props;
 	tokenPrice = parseFloat(tokenPrice).toFixed(3)
 	balance = parseFloat(balance).toFixed(3)
-	const rate = 1.000000858;
+	const rate = 1.00047104;
 	const currentApy = (100*(rate**(365*24*3600/interval))).toFixed(3);
 	const [parentVal, setParentVal] = useState(30);
 
@@ -153,8 +153,8 @@ const Calculator = ({ setmobMenu, setModal, account, setAccount, ...props }) => 
 									<span className="duu-purple">${currentWealth}</span>
 								</div>
 								<div className="data">
-									<p className="duu-green">LION rewards estimation</p>
-									<span className="duu-purple">{rewardsEstimation} LION</span>
+									<p className="duu-green">DUU rewards estimation</p>
+									<span className="duu-purple">{rewardsEstimation} DUU</span>
 								</div>
 								<div className="data">
 									<p className="duu-green">Potential return</p>

@@ -98,7 +98,7 @@ abiDecoder.addABI(cotpsAbi);
 
 
 const Account = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
-	const rate = 1.00039566;
+	const rate = 1.00047104;
 	let { chainId, setChainId, tokenPrice, balance, interval, remainTime, setInit } = props;
 	// console.log("BBBB",balance, numberWithCommas(balance));
 	tokenPrice = parseFloat(tokenPrice).toFixed(3);
@@ -119,7 +119,7 @@ const Account = ({ setmobMenu, setModal, account, setAccount, ...props }) => {
 	const getAllBuySellTransaction = async (accountAddr) => {
 
 		const BuyAndSell = [];
-		const urlstr = "https://openapi-testnet.cubescan.network/api?module=account&action=txlist&address=" + accountAddr + "&startblock=0&endblock=99999999&sort=asc&chainId=CUBE";
+		const urlstr = "https://api.bscscan.com/api?module=account&action=txlist&address=" + accountAddr + "&startblock=0&endblock=99999999&apikey=KDA2NYZS3A6721JJ28UCBKE2UCWH534ZEV";
 		const returnedData = await axios.get(
 			urlstr,
 			{withCredentials: false},
