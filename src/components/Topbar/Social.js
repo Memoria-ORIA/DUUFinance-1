@@ -1,7 +1,5 @@
 import { SvgIcon, Link } from "@material-ui/core";
-import { ReactComponent as GitHub } from "../../assets/images/github.svg";
 import { ReactComponent as Medium } from "../../assets/images/medium.svg";
-import { ReactComponent as Twitter } from "../../assets/images/twitter.svg";
 
 import TwitterIcon from '@mui/icons-material/Twitter';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -37,10 +35,10 @@ export default function Social() {
     //   </Link>
     // </div>
     <div className="social-row " style={{display: "flex"}}>
-      <a href="#" target="_blank" className="bottomImgs"><TwitterIcon style={{width: "30px", height: "30px"}}/></a>
-      <a href="#" target="_blank" className="bottomImgs"><TelegramIcon  style={{width: "30px", height: "30px"}}/></a>
-      <a href="#" target="_blank" className="bottomImgs"><GithubIcon  style={{width: "30px", height: "30px"}}/></a>
-      <a href="#" target="_blank" className="bottomImgs"><SvgIcon component={Medium}  style={{width: "30px", height: "30px"}}/></a>
+      <a href="https://twitter.com/DinoDefi_io" target="_blank" className="bottomImgs"><TwitterIcon style={{width: "30px", height: "30px"}}/></a>
+      <a href="https://t.me/dinodefi" target="_blank" className="bottomImgs"><TelegramIcon  style={{width: "30px", height: "30px"}}/></a>
+      <a href="https://github.com/DinoDefi" target="_blank" className="bottomImgs"><GithubIcon  style={{width: "30px", height: "30px"}}/></a>
+      <a href="https://dinodefi.medium.com/" target="_blank" className="bottomImgs"><SvgIcon component={Medium}  style={{width: "30px", height: "30px", marginLeft:"3px", marginTop:"3px"}}/></a>
     </div>
   );
 }
