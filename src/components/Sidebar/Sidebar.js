@@ -55,7 +55,7 @@ export default function Sidebar(props) {
                                 <span>Analytics</span></NavLink>
                         </li>
                         <li className='linkButtons'>
-                            <a href="#">
+                            <a href="https://dinodefi.gitbook.io/dinodefi-1/" activeclassname="active" target="_blank">
                                 <img src={DocIcon} alt="Doc Icon" />
                                 <span>Docs</span></a>
                         </li>
